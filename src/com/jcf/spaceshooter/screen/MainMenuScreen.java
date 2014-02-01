@@ -21,9 +21,12 @@ public class MainMenuScreen extends Screen {
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
 		
-		g.clear(0);
-		g.drawPixmap(Assets.logo, 150, 300);
-
+		g.clear(0xFFFFFF);
+		
+		int x = (g.getWidth() - Assets.menuText.getWidth())/2;
+		int y = (g.getHeight() - Assets.menuText.getHeight())/2;
+		
+		g.drawPixmap(Assets.menuText, x, y);
 	}
 
 	@Override

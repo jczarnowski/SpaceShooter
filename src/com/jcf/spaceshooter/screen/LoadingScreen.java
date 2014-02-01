@@ -21,6 +21,7 @@ public class LoadingScreen extends Screen {
 		
 		// load pictures
 		Assets.logo = g.newPixmap("logo.jpg", PixmapFormat.ARGB4444);
+		Assets.menuText = g.newPixmap("menu.png", PixmapFormat.ARGB4444);
 		
 		// load sounds
 		
@@ -32,8 +33,6 @@ public class LoadingScreen extends Screen {
 
 	@Override
 	public void present(float deltaTime) {
-		Graphics g = game.getGraphics();
-		g.drawPixmap(Assets.logo, 5, 5);
 	}
 
 	@Override
