@@ -17,6 +17,7 @@ import android.view.WindowManager;
 
 public class AndroidGame extends Activity {
 	Graphics graphics;		// graphics object to load and draw stuff
+	Input input;			// input subsystem to provide us with touch events and accel polling
 	RenderView renderView;	// a SurfaceView for displaying our framebuffer and main loop
 	WakeLock wakeLock;		// wakeLock to keep the screen alive
 	Screen screen;			// the current screen
@@ -25,7 +26,7 @@ public class AndroidGame extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		// request no title and fullscreen
+		// request no title and fullscreenX
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -42,6 +43,7 @@ public class AndroidGame extends Activity {
 		
 		graphics = new Graphics(getAssets() ,framebuffer);
 		renderView = new RenderView(this, framebuffer);
+		input = new Input(this, renderView);
 		
 		// set our renderView as content view
 		setContentView(renderView);
@@ -59,16 +61,21 @@ public class AndroidGame extends Activity {
 
 	@Override
 	protected void onPause() {
+		super.onPause();
 		wakeLock.release();
 		renderView.pause();
-		super.onPause();
+		screen.pause();
+		
+		if(isFinishing())
+			screen.dispose();
 	}
 
 	@Override
 	protected void onResume() {
+		super.onResume();
 		wakeLock.acquire();
 		renderView.resume();
-		super.onResume();
+		screen.resume();
 	}
 
 	/*
@@ -95,5 +102,9 @@ public class AndroidGame extends Activity {
 	
 	public Graphics getGraphics() {
 		return graphics;
+	}
+	
+	public Input getInput() {
+		return input;
 	}
 }

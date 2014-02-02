@@ -1,20 +1,28 @@
 package com.jcf.spaceshooter.screen;
 
+import android.util.Log;
+
 import com.jcf.spaceshooter.AndroidGame;
 import com.jcf.spaceshooter.Assets;
 import com.jcf.spaceshooter.Graphics;
+import com.jcf.spaceshooter.Input;
+import com.jcf.spaceshooter.MultiTouchHandler;
 
 public class MainMenuScreen extends Screen {
-
 	public MainMenuScreen(AndroidGame game) {
 		super(game);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void update(float deltaTime) {
-		// TODO Auto-generated method stub
-
+		int num_touched = 0;
+		Input input = game.getInput();
+		
+		for(int i = 0; i < MultiTouchHandler.MAX_TOUCHPOINTS; ++i)
+			if(input.isTouchDown(i))
+				num_touched++;
+		
+		Log.d("asd", "Palców na ekranie: " + num_touched);
 	}
 
 	@Override
