@@ -37,6 +37,8 @@ public class MultiTouchHandler implements OnTouchListener {
 			case MotionEvent.ACTION_POINTER_DOWN:
 				isTouched[i] = true;
 				id[i] = pointerId;
+				touchX[i] = (int) event.getX(i);
+				touchY[i] = (int) event.getY(i);
 				break;
 			case MotionEvent.ACTION_UP:
 			case MotionEvent.ACTION_POINTER_UP:
