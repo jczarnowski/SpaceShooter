@@ -5,4 +5,5 @@ public class Assets {
 	public static Pixmap menuText;
 	public static Pixmap sound;
 	public static Pixmap nosound;
+	public static Pixmap exit;
 }

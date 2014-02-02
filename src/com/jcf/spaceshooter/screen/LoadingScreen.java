@@ -23,7 +23,8 @@ public class LoadingScreen extends Screen {
 		Assets.logo = g.newPixmap("logo.jpg", PixmapFormat.ARGB4444);
 		Assets.menuText = g.newPixmap("menu.png", PixmapFormat.ARGB4444);
 		Assets.sound = g.newPixmap("sound.png", PixmapFormat.ARGB4444);
-		Assets.nosound= g.newPixmap("nosound.png", PixmapFormat.ARGB4444);
+		Assets.nosound = g.newPixmap("nosound.png", PixmapFormat.ARGB4444);
+		Assets.exit = g.newPixmap("exit.png", PixmapFormat.ARGB4444);
 		
 		// load sounds
 		
