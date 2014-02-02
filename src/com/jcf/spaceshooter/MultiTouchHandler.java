@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 
 public class MultiTouchHandler implements OnTouchListener {
-	public static final int MAX_TOUCHEVENTS = 20;
 	public static final int MAX_TOUCHPOINTS = 10;
 	boolean[] isTouched = new boolean[MAX_TOUCHPOINTS];
 	int[] touchX = new int[MAX_TOUCHPOINTS];
@@ -19,7 +18,6 @@ public class MultiTouchHandler implements OnTouchListener {
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		int action = event.getAction() & MotionEvent.ACTION_MASK;
-		int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
 		int pointerCount = event.getPointerCount();
 		 
 		for(int i = 0; i < MAX_TOUCHPOINTS; ++i) {
