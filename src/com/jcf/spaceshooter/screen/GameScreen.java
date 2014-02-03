@@ -9,12 +9,15 @@ import com.jcf.spaceshooter.AndroidGame;
 import com.jcf.spaceshooter.Graphics;
 import com.jcf.spaceshooter.Input;
 import com.jcf.spaceshooter.KeyEvent;
+import com.jcf.spaceshooter.ShuttleController;
+import com.jcf.spaceshooter.TouchController;
 import com.jcf.spaceshooter.model.Background;
 import com.jcf.spaceshooter.model.EntityHandler;
 import com.jcf.spaceshooter.model.TouchPad;
 
 public class GameScreen extends Screen {
 
+	ShuttleController shuttleController;
 	Graphics g;
 	Background bg;
 	EntityHandler eh;
@@ -26,6 +29,8 @@ public class GameScreen extends Screen {
 		tp = new TouchPad(g.getWidth(), g.getHeight(), 200, 200);
 		bg = new Background(g.getWidth(), g.getHeight());
 		eh = new EntityHandler(g.getWidth(), g.getHeight(), tp);
+		shuttleController = new TouchController(game.getInput());
+
 	}
 	
 	@Override
@@ -40,6 +45,7 @@ public class GameScreen extends Screen {
 		bg.update(deltaTime);
 		//entity handler
 		eh.update(deltaTime);
+
 		
 		// process key events (back button)
 		ArrayList<KeyEvent> keyEvents = input.getKeyEvents();
@@ -49,7 +55,6 @@ public class GameScreen extends Screen {
 			if(event.keyCode == android.view.KeyEvent.KEYCODE_BACK)
 				game.setScreen(new MainMenuScreen(game));
 		}
-		
 	}
 
 	@Override
@@ -57,10 +62,11 @@ public class GameScreen extends Screen {
 		
 		g.clear(Color.BLACK);
 		Graphics g = game.getGraphics();
-	
+		
 		bg.draw(g);
 		eh.draw(g);
 		tp.draw(g);
+
 	}
 
 	@Override

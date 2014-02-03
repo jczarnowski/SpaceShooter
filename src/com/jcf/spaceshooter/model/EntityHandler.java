@@ -8,12 +8,12 @@ public class EntityHandler {
 
 	private Asteroids asteroids;
 	private Bullets bullets;
-	SpaceShip ss;
+	SpaceShuttle ss;
 
 	public EntityHandler(int width, int height, TouchPad tp)
 	{
 		bullets = new Bullets(width, height);
-		ss = new SpaceShip( width, height, tp, bullets);
+		ss = new SpaceShuttle( width, height, tp, bullets);
 		asteroids = new Asteroids(10, width, height, ss);
 		bullets.setAsteroids(asteroids);
 		asteroids.createAsteroids(1);

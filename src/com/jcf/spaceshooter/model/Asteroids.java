@@ -12,11 +12,11 @@ public class Asteroids {
 
 	private ArrayList<Asteroid> asteroidsList;
 	int interval;
-	SpaceShip ss;
+	SpaceShuttle ss;
 	int sw, sh;
 	int res;
 	
-	public Asteroids( int interval, int screenWidth, int screenHeight, SpaceShip s)
+	public Asteroids( int interval, int screenWidth, int screenHeight, SpaceShuttle s)
 	{
 
 		ss = s;
@@ -129,7 +129,7 @@ public class Asteroids {
 						asteroidsList.remove(a);
 					return true;
 				}
-				a.addEmitter(new ParticleEmitter(10, 70,(int)x,(int)y,100f,0f,(float)Math.PI*2f, 0.3f, sw, sh, Assets.bullet));
+				a.addEmitter(new ParticleEmitter(10, 70,(int)x,(int)y,100f,0f,(float)Math.PI*2f, 0.3f, sw, sh, Assets.spark));
 				return true;
 			}
 		}
