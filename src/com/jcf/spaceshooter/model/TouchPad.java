@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import android.view.MotionEvent;
 
-import com.jcf.spaceshooter.Assets;
-import com.jcf.spaceshooter.Graphics;
-import com.jcf.spaceshooter.Input;
-import com.jcf.spaceshooter.Pixmap;
-import com.jcf.spaceshooter.TouchEvent;
+import com.jcf.spaceshooter.engine.Assets;
+import com.jcf.spaceshooter.engine.Graphics;
+import com.jcf.spaceshooter.engine.Input;
+import com.jcf.spaceshooter.engine.Pixmap;
+import com.jcf.spaceshooter.engine.TouchEvent;
 
 public class TouchPad{
 

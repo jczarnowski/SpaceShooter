@@ -9,8 +9,9 @@ public class TouchController extends ShuttleController {
 		super(input);
 	}
 
-	public void ControlShuttle() { //SpaceShuttle shuttle) {
-		// if(dzojwprawo) shuttle.predkoscwprawo
+	@Override
+	public void ControlShuttle(SpaceShuttle shuttle) {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -2,9 +2,9 @@ package com.jcf.spaceshooter.model;
 
 import java.util.ArrayList;
 
-import com.jcf.spaceshooter.Assets;
-import com.jcf.spaceshooter.Graphics;
-import com.jcf.spaceshooter.Pixmap;
+import com.jcf.spaceshooter.engine.Assets;
+import com.jcf.spaceshooter.engine.Graphics;
+import com.jcf.spaceshooter.engine.Pixmap;
 
 public class Background {
 	float y;

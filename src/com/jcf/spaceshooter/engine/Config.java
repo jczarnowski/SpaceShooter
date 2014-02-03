@@ -95,4 +95,8 @@ public class Config {
 			return false;
 		}
 	}
+	
+	public void addHighScore(int score) {
+		
+	}
 }

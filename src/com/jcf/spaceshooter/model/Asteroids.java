@@ -5,8 +5,8 @@ import java.util.Random;
 
 import android.widget.ImageView;
 
-import com.jcf.spaceshooter.Assets;
-import com.jcf.spaceshooter.Graphics;
+import com.jcf.spaceshooter.engine.Assets;
+import com.jcf.spaceshooter.engine.Graphics;
 
 public class Asteroids {
 

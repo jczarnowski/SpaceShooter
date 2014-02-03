@@ -1,6 +1,6 @@
 package com.jcf.spaceshooter.model;
 
-import com.jcf.spaceshooter.Pixmap;
+import com.jcf.spaceshooter.engine.Pixmap;
 
 public class Particle extends SpaceObject {
 	
