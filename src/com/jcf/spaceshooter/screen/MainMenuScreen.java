@@ -47,7 +47,7 @@ public class MainMenuScreen extends Screen {
 	}
 
 	@Override
-	public void update(float deltaTime) {
+	public void update(int deltaTime) {
 		Input input = game.getInput();
 		
 		ArrayList<TouchEvent> eventList = input.getTouchEvents();
@@ -70,7 +70,7 @@ public class MainMenuScreen extends Screen {
 	}
 
 	@Override
-	public void present(float deltaTime) {
+	public void present(int deltaTime) {
 		Graphics g = game.getGraphics();
 		
 		g.clear(BGCOLOR);
