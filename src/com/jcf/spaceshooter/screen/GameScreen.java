@@ -8,16 +8,25 @@ import com.jcf.spaceshooter.AndroidGame;
 import com.jcf.spaceshooter.Graphics;
 import com.jcf.spaceshooter.Input;
 import com.jcf.spaceshooter.KeyEvent;
+import com.jcf.spaceshooter.ShuttleController;
+import com.jcf.spaceshooter.TouchController;
 
 public class GameScreen extends Screen {
-
+	ShuttleController shuttleController;
+	
 	public GameScreen(AndroidGame game) {
 		super(game);
+		
+		//if(Game.Config.ControlMethod = ShuttleControler.CONTROL_TOUCH)
+		shuttleController = new TouchController(game.getInput());
 	}
 	
 	@Override
 	public void update(float deltaTime) {
 		Input input = game.getInput();
+		
+		// control the shuttle
+		//shuttleController.ControlShuttle(shuttle)
 		
 		// check out the sensor reading
 		Log.d("asd", "sensor reading: " + input.getAccX() + ", " + input.getAccY() + ", " + input.getAccZ());
@@ -30,13 +39,12 @@ public class GameScreen extends Screen {
 			if(event.keyCode == android.view.KeyEvent.KEYCODE_BACK)
 				game.setScreen(new MainMenuScreen(game));
 		}
-		
 	}
 
 	@Override
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
-	
+		
 		g.clear(0xFF00FF00);
 	}
 
