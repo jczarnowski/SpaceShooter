@@ -1,4 +1,5 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
+
 
 public abstract class ShuttleController {
 	public static final int CONTROL_TOUCH = 0;
@@ -10,5 +11,5 @@ public abstract class ShuttleController {
 		this.input = input;
 	}
 	
-	public abstract void ControlShuttle(SpaceShuttle shuttle);
+	//public abstract void ControlShuttle(SpaceShuttle shuttle);
 }

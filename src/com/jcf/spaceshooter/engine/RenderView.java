@@ -1,4 +1,6 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
+
+import com.jcf.spaceshooter.AndroidGame;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

@@ -1,4 +1,5 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
+
 
 public class TouchController extends ShuttleController {
 
@@ -6,8 +7,7 @@ public class TouchController extends ShuttleController {
 		super(input);
 	}
 
-	@Override
-	public void ControlShuttle(SpaceShuttle shuttle) {
+	public void ControlShuttle() { //SpaceShuttle shuttle) {
 		// if(dzojwprawo) shuttle.predkoscwprawo
 		
 	}

@@ -1,9 +1,9 @@
 package com.jcf.spaceshooter.screen;
 
 import com.jcf.spaceshooter.AndroidGame;
-import com.jcf.spaceshooter.Assets;
-import com.jcf.spaceshooter.Graphics;
-import com.jcf.spaceshooter.Graphics.PixmapFormat;
+import com.jcf.spaceshooter.engine.Assets;
+import com.jcf.spaceshooter.engine.Graphics;
+import com.jcf.spaceshooter.engine.Graphics.PixmapFormat;
 
 /*
  * Loading screen loads game assets and configuration

@@ -1,4 +1,4 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
 
 public class Assets {
 	public static Pixmap logo;

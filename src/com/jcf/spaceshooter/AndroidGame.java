@@ -1,5 +1,9 @@
 package com.jcf.spaceshooter;
 
+import com.jcf.spaceshooter.engine.FileIO;
+import com.jcf.spaceshooter.engine.Graphics;
+import com.jcf.spaceshooter.engine.Input;
+import com.jcf.spaceshooter.engine.RenderView;
 import com.jcf.spaceshooter.screen.LoadingScreen;
 import com.jcf.spaceshooter.screen.MainMenuScreen;
 import com.jcf.spaceshooter.screen.Screen;
@@ -18,6 +22,8 @@ import android.view.WindowManager;
 public class AndroidGame extends Activity {
 	Graphics graphics;		// graphics object to load and draw stuff
 	Input input;			// input subsystem to provide us with touch events and accel polling
+	com.jcf.spaceshooter.engine.Config config;			// class to store configuration
+	FileIO fileIO;			// file input output class
 	RenderView renderView;	// a SurfaceView for displaying our framebuffer and main loop
 	WakeLock wakeLock;		// wakeLock to keep the screen alive
 	Screen screen;			// the current screen
@@ -44,6 +50,9 @@ public class AndroidGame extends Activity {
 		graphics = new Graphics(getAssets() ,framebuffer);
 		renderView = new RenderView(this, framebuffer);
 		input = new Input(this, renderView);
+		fileIO = new FileIO(getAssets());
+		config = new com.jcf.spaceshooter.engine.Config(fileIO);
+		config.loadSettings();
 		
 		// set our renderView as content view
 		setContentView(renderView);
@@ -66,8 +75,10 @@ public class AndroidGame extends Activity {
 		renderView.pause();
 		screen.pause();
 		
-		if(isFinishing())
-			screen.dispose();
+		if(isFinishing()) {
+			config.saveSettings();
+			screen.dispose();	
+		}
 	}
 
 	@Override
@@ -106,5 +117,9 @@ public class AndroidGame extends Activity {
 	
 	public Input getInput() {
 		return input;
+	}
+	
+	public com.jcf.spaceshooter.engine.Config getConfig() {
+		return config;
 	}
 }

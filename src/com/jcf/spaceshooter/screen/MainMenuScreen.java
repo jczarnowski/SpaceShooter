@@ -4,17 +4,16 @@ import java.util.ArrayList;
 
 import android.graphics.Rect;
 import com.jcf.spaceshooter.AndroidGame;
-import com.jcf.spaceshooter.Assets;
-import com.jcf.spaceshooter.Graphics;
-import com.jcf.spaceshooter.Input;
-import com.jcf.spaceshooter.KeyEvent;
-import com.jcf.spaceshooter.MultiTouchHandler;
-import com.jcf.spaceshooter.TouchEvent;
+import com.jcf.spaceshooter.engine.Assets;
+import com.jcf.spaceshooter.engine.Graphics;
+import com.jcf.spaceshooter.engine.Input;
+import com.jcf.spaceshooter.engine.KeyEvent;
+import com.jcf.spaceshooter.engine.MultiTouchHandler;
+import com.jcf.spaceshooter.engine.TouchEvent;
 
 public class MainMenuScreen extends Screen {
 	private static final int BGCOLOR = 0xFF2868b8;
 	
-	boolean sound = true;
 	int textX, textY;
 	int buttonWidth, buttonHeight;
 	Rect playBounds;
@@ -43,7 +42,6 @@ public class MainMenuScreen extends Screen {
 		int soundY = g.getHeight() - 10 - Assets.sound.getHeight();
 		soundBounds = new Rect(soundX, soundY, soundX+Assets.sound.getWidth(), soundY+Assets.sound.getHeight());
 	
-		
 	}
 
 	@Override
@@ -62,7 +60,7 @@ public class MainMenuScreen extends Screen {
 				if(inBounds(x, y, playBounds))
 					game.setScreen(new GameScreen(game));
 				if(inBounds(x, y, soundBounds))
-					sound = !sound;
+					game.getConfig().soundOn = !game.getConfig().soundOn;
 				if(inBounds(x, y, exitBounds))
 					game.finish();
 			}
@@ -77,7 +75,7 @@ public class MainMenuScreen extends Screen {
 		g.drawPixmap(Assets.menuText, textX, textY);
 		g.drawPixmap(Assets.exit, exitBounds.left, exitBounds.top);
 		
-		if(sound)
+		if(game.getConfig().soundOn)
 			g.drawPixmap(Assets.sound, soundBounds.left, soundBounds.top);
 		else
 			g.drawPixmap(Assets.nosound, soundBounds.left, soundBounds.top);
