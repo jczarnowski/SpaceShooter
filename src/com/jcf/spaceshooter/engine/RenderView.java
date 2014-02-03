@@ -36,9 +36,9 @@ public class RenderView extends SurfaceView implements Runnable {
 			if(!holder.getSurface().isValid())
 				continue;
 			
-			float dt = (System.nanoTime() - startTime) / 1000000000.0f;
+			int dt = (int)(System.currentTimeMillis() - startTime);
 			
-			startTime = System.nanoTime();
+			startTime = System.currentTimeMillis();
 			
 			game.getCurrentScreen().update(dt);
 			game.getCurrentScreen().present(dt);

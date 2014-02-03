@@ -1,6 +1,8 @@
 package com.jcf.spaceshooter.engine;
 
 
+import com.jcf.spaceshooter.model.SpaceShuttle;
+
 public abstract class ShuttleController {
 	public static final int CONTROL_TOUCH = 0;
 	public static final int CONTROL_ACCEL = 1;
@@ -11,5 +13,6 @@ public abstract class ShuttleController {
 		this.input = input;
 	}
 	
-	//public abstract void ControlShuttle(SpaceShuttle shuttle);
+	public abstract void ControlShuttle(SpaceShuttle shuttle);
+
 }
