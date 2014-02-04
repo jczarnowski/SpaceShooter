@@ -30,7 +30,4 @@ public class Asteroid extends SpaceObject {
 			return true;
 		}
 	}
-
-
-	
 }

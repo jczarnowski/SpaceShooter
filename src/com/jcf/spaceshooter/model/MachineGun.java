@@ -13,7 +13,7 @@ public class MachineGun extends Gun {
 	@Override
 	public void fire(int interval,int x, int y, float rot ) {
 		
-		interval *= 0.5;
+		interval *= 2;
 		if(lastShotTime < System.currentTimeMillis() - interval)
 		{
 			if(lastShotTime < System.currentTimeMillis() - 2*interval)

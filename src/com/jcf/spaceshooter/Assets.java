@@ -14,4 +14,6 @@ public class Assets {
 	public static Pixmap bullet;
 	public static Pixmap pad;
 	public static Pixmap spark;
+	public static Pixmap sparkBig;
+	public static Pixmap ufo;
 }

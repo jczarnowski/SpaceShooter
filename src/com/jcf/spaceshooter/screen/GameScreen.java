@@ -35,6 +35,9 @@ public class GameScreen extends Screen {
 	
 	@Override
 	public void update(int deltaTime) {
+		
+		Log.d("asd", Float.toString(1000.f/deltaTime));
+		
 		Input input = game.getInput();
 		
 		//controll

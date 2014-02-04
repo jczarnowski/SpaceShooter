@@ -38,9 +38,11 @@ public class SpaceObject {
 		height = pixmap.getHeight();
 	}
 	
-	public boolean clean()
+	public ArrayList<ParticleEmitter> getParticleEmitters()
 	{
-		return pe.size() == 0;
+		ArrayList<ParticleEmitter> tmp = pe;
+		pe = null;
+		return tmp;
 	}
 	
 	public void setX(float x) {
@@ -84,12 +86,10 @@ public class SpaceObject {
 		y += vy * time / 100.0;
 		rot += vrot*time / 100.0;
 
-		for(int i = 0; i<pe.size();i++)
+		for(int i = pe.size() -1; i >= 0;i--)
 			if(!pe.get(i).update(time))
 			{
-				pe.get(i).clean();
 				pe.remove(i);
-				i--;
 			}
 
 		return true;

@@ -2,29 +2,33 @@ package com.jcf.spaceshooter.model;
 
 import com.jcf.spaceshooter.Graphics;
 
-import android.widget.AbsoluteLayout;
 
-public class EntityHandler {
+public class EntityHandler { 
 
 	private Asteroids asteroids;
 	private Bullets bullets;
+	private Enemies enemies;
 	SpaceShuttle ss;
 
 	public EntityHandler(int width, int height, TouchPad tp)
 	{
 		bullets = new Bullets(width, height);
 		ss = new SpaceShuttle( width, height, tp, bullets);
-		asteroids = new Asteroids(10, width, height, ss);
+		asteroids = new Asteroids(width, height, ss);
+		enemies = new Enemies(width, height, ss);
 		bullets.setAsteroids(asteroids);
-		asteroids.createAsteroids(1);
+		bullets.setEnemiess(enemies);
 	}
 
 	public void update(int time)
 	{
 		ss.update(time);
 		asteroids.update(time);
+		enemies.update(time);
 		bullets.update(time);
 		handleCollisions();
+		
+		
 	}
 
 	private void handleCollisions()
@@ -55,6 +59,7 @@ public class EntityHandler {
 	{
 		bullets.draw(g);
 		ss.draw(g);
+		enemies.draw(g);
 		asteroids.draw(g);
 		
 	}

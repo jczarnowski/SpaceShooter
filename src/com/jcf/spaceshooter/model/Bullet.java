@@ -26,19 +26,14 @@ public class Bullet extends SpaceObject{
 					return false;
 				}
 
-		if(colisionDetection())
-		{
-			return false;
-		}
-		
 		return super.update(time);
 	}
 
-	private boolean colisionDetection() {
+	public boolean colisionDetection(SpaceObjectsHandler objects) {
 		
-		for(int i = 0; i<asteroids.count(); i++)
+		for(int i = 0; i<objects.count(); i++)
 		{
-			if(asteroids.simpleCollisionDetection(i,x,y,width,height, power))
+			if(objects.simpleCollisionDetection(i,x,y,width,height, power))
 			{
 				return true;
 			}
