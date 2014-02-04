@@ -12,6 +12,8 @@ public class Assets {
 	public static Pixmap options_onoff;
 	public static Pixmap options_input;
 	public static Pixmap back;
+	public static Pixmap numbers;
+	public static Pixmap highscores;
 	public static Pixmap asteroid1;
 	public static Pixmap asteroid2;
 	public static Pixmap rocket;
@@ -23,4 +25,8 @@ public class Assets {
 	public static Pixmap spark;
 	public static Pixmap sparkBig;
 	public static Pixmap ufo;
+	
+	public static Sound click;
+	
+	public static Music menumusic;
 }

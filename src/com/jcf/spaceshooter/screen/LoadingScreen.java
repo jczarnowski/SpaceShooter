@@ -2,6 +2,7 @@ package com.jcf.spaceshooter.screen;
 
 import com.jcf.spaceshooter.AndroidGame;
 import com.jcf.spaceshooter.engine.Assets;
+import com.jcf.spaceshooter.engine.Audio;
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.engine.Graphics.PixmapFormat;
 
@@ -29,6 +30,8 @@ public class LoadingScreen extends Screen {
 		Assets.options_onoff = g.newPixmap("onoff.png", PixmapFormat.ARGB4444);
 		Assets.options_input = g.newPixmap("touchaccel.png", PixmapFormat.ARGB4444);
 		Assets.back = g.newPixmap("back.png", PixmapFormat.ARGB4444);
+		Assets.numbers = g.newPixmap("numbers.png", PixmapFormat.ARGB4444);
+		Assets.highscores = g.newPixmap("highscores.png", PixmapFormat.ARGB4444);
 		Assets.asteroid1 = g.newPixmap("asteroid.png", PixmapFormat.ARGB4444);
 		Assets.asteroid2 = g.newPixmap("asteroid2.png", PixmapFormat.ARGB4444);
 		//Assets.ball = g.newPixmap("ball.png", PixmapFormat.ARGB4444);
@@ -42,9 +45,13 @@ public class LoadingScreen extends Screen {
 		Assets.ufo = g.newPixmap("ufo.png", PixmapFormat.ARGB4444);
 		Assets.bullet_rocket = g.newPixmap("bullet_rocket.png", PixmapFormat.ARGB4444);
 		
-		// load sounds
+		Audio a = game.getAudio();
+		// load sounds and music
+		Assets.click = a.newSound("click.wav");
+		Assets.menumusic = a.newMusic("menumusic.mp3");
 		
 		// load config from sd
+		game.getConfig().loadSettings();
 		
 		// set the next screen
 		game.setScreen(new MainMenuScreen(game));

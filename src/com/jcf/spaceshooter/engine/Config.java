@@ -24,7 +24,7 @@ public class Config {
 		
 		// delete all highscores
 		for(int i = 0; i < highscores.length; ++i)
-			highscores[i] = -1;
+			highscores[i] = 0;
 	}
 	
 	public boolean saveSettings() {
@@ -86,6 +86,7 @@ public class Config {
 			// read highscores
 			for(int i = 0; i < 5; ++i)
 				highscores[i] = Integer.parseInt(br.readLine());
+			print_highscores();
 			
 			Log.d("Config", "Config loaded succesfully");
 			return true;
@@ -96,12 +97,35 @@ public class Config {
 		}
 	}
 	
-	public void addHighScore(int score) {
+	public void addScore(int score) {
+		Log.d("Config", "Adding score: " + score);
 		
+		int i = 0;
+		
+		while(i < highscores.length && highscores[i] > score) i++;
+		
+		// score is too low to get on the list
+		if(i >= highscores.length)
+			return;
+		
+		for(int j = highscores.length-1; j > i; --j)
+			highscores[j]=highscores[j-1];
+		
+		highscores[i] = score;
+		
+		print_highscores();
 	}
 
 	public void clearHighScores() {
 		for(int i = 0; i < highscores.length; ++i)
-			highscores[i] = -1;
+			highscores[i] = 0;
+		
+		Log.d("Config", "Cleared highscores!");
+		print_highscores();
+	}
+	
+	private void print_highscores() {
+		for(int i = 0; i < highscores.length; ++i)
+			Log.d("Config", i + ". " + highscores[i]);
 	}
 }

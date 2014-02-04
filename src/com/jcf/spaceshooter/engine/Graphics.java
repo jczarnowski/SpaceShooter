@@ -116,6 +116,34 @@ public class Graphics {
 		canvas.drawBitmap(pixmap.bitmap, x, y, null);
 	}
 	
+	/*
+	 * Draw a number using default font.
+	 * The number must be positive
+	 */
+	public void drawNumber(int x, int y, int number) {
+		if(number < 0)
+			throw new IllegalArgumentException("number has to be positive!");
+		
+		String nr = Integer.toString(number);
+		
+		for(int i = 0; i < nr.length(); ++i)
+			drawSingleNumber(x+i*21, y, nr.charAt(i));
+	}
+	
+	/*
+	 * draws numbers from 0-9 and a dot
+	 */
+	public void drawSingleNumber(int x, int y, char num) {
+		if(num != '.' && (num < 48 || num > 57))
+			throw new IllegalArgumentException("char out of range");
+		
+		int mul = num - 48;
+		if(num == '.')
+			mul = 10;
+		
+		drawPixmap(Assets.numbers, x, y, mul*21, 0, 21, Assets.numbers.getHeight());
+	}
+	
 	public int getWidth() {
 		return framebuffer.getWidth();
 	}
