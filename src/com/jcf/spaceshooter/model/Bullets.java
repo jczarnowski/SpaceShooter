@@ -31,9 +31,9 @@ public class Bullets extends SpaceObjectsHandler{
 //		}
 //	}
 	
-	public void add(int x, int y, float vx, float vy)
+	public void add(Bullet b)
 	{
-		spaceObjects.add(new Bullet(x, y, vx, vy, sw, sh));
+		spaceObjects.add(b);
 	}
 
 	@Override

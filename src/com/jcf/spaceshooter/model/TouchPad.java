@@ -2,6 +2,7 @@ package com.jcf.spaceshooter.model;
 
 import java.util.ArrayList;
 
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.jcf.spaceshooter.engine.Assets;
@@ -12,7 +13,7 @@ import com.jcf.spaceshooter.engine.TouchEvent;
 
 public class TouchPad{
 
-	private float x1, y1, x2, y2, midx1, midx2, midy, width, height;
+	private float x1, y1, x2, y2, sumx, sumy, midx1, midx2, midy, width, height;
 	Pixmap pixmap;
 	int swidth;
 	
@@ -24,6 +25,16 @@ public class TouchPad{
 	public float get_y1()
 	{
 		return y1;
+	}	
+	
+	public float get_sumx()
+	{
+		return sumx;
+	}
+
+	public float get_sumy()
+	{
+		return sumy;
 	}	
 
 	public float get_x2()
@@ -49,7 +60,8 @@ public class TouchPad{
 		
 		width = w;
 		height = h;
-		
+		sumx = 0;
+		sumy = 0;
 		pixmap = Assets.pad;
 
 	}
@@ -67,11 +79,17 @@ public class TouchPad{
 		ArrayList<TouchEvent> e = input.getTouchEvents();
 		float x,y;
 		float touchX ;
+		
 		for(int i = 0; i <e.size();i++)
-		{
+		{	
+
+
 			switch (e.get(i).type) {
 				case MotionEvent.ACTION_MOVE:
 				{
+					sumx = (float)(sumx*0.95 + 0.05*e.get(i).x);
+					sumy = (float)(sumy*0.95 + 0.05*e.get(i).y);
+
 					if(e.get(i).x < swidth/2)
 						touchX = e.get(i).x - midx1;
 					else
@@ -108,18 +126,26 @@ public class TouchPad{
 					
 				case MotionEvent.ACTION_UP:
 				{
-//					if(e.get(i).x < swidth/2)
-					{	
-						x1 = 0;
-						y1 = 0;
-					}
-//					else
-					{
-						x2 = 0;
-						y2 = 0;
-					}
+					Log.d("tp","up " + e.get(i).x );
+					x1 = 0;
+					y1 = 0;
+					x2 = 0;
+					y2 = 0;
 					break;
 				}
+				
+				case MotionEvent.ACTION_POINTER_UP:
+					Log.d("tp","pointer_up " + e.get(i).x );
+					break;				
+				case MotionEvent.ACTION_CANCEL:
+					Log.d("tp","cancel " + e.get(i).x );
+					break;				
+				case MotionEvent.ACTION_POINTER_1_DOWN:
+					Log.d("tp","pointer 1 down " + e.get(i).x );
+					break;				
+				case MotionEvent.ACTION_OUTSIDE:
+					Log.d("tp","outside " + e.get(i).x );
+					break;
 			}
 		}
 	}

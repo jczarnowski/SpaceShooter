@@ -63,9 +63,9 @@ public class SpaceObject {
 
 	public boolean update(int time)
 	{
-		x += vx * time / 100.0;
-		y += vy * time / 100.0;
-		rot += vrot*time / 100.0;
+		x += vx * time;
+		y += vy * time;
+		rot += vrot*time;
 		return true;
 	}
 	

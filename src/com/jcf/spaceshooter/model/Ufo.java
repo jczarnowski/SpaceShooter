@@ -4,7 +4,6 @@ import com.jcf.spaceshooter.engine.Assets;
 
 public class Ufo extends Enemy {
 
-	private int lifetime = 0;
 	
 	public Ufo(int x, int y, float vx, float vy, int screenWidth, int screenHeight) {
 		super(x,y,vx,vy,screenWidth,screenHeight, Assets.ufo);
@@ -16,8 +15,7 @@ public class Ufo extends Enemy {
 	@Override
 	public boolean update(int time)
 	{	
-		lifetime += time;
-		vx = (float)(15*Math.sin(lifetime/100));
+		vx = (float)(0.15*Math.sin(lifetime/200));
 
 		return(super.update(time) );
 	}

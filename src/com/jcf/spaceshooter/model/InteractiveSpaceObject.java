@@ -9,6 +9,8 @@ import com.jcf.spaceshooter.engine.Pixmap;
 
 public class InteractiveSpaceObject extends SpaceObject{
 
+
+	protected int lifetime = 0;
 	protected int hp;
 	protected int power;
 	protected ArrayList<ParticleEmitter> pe;
@@ -34,16 +36,15 @@ public class InteractiveSpaceObject extends SpaceObject{
 
 	public boolean update(int time)
 	{				
+		lifetime += time;
 		if(hp<=0) return false;
 
 		super.update(time);
 		
 		for(int i = pe.size() -1; i >= 0;i--)
 		{
-			Log.d("emutuje","kurwa");
 			if(!pe.get(i).update(time))
 			{
-				Log.d("emituje","usuwam");
 				pe.remove(i);
 			}
 		}

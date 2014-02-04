@@ -22,7 +22,7 @@ public class Enemies extends SpaceObjectsHandler {
 		Random  random = new Random();
 		for(int j = 0; j< n;j++)
 		{
-			float a = random.nextFloat()*10 + 5;
+			float a = random.nextFloat()*0.10f + 0.05f;
 			float b = 0;
 			int x = (int) (random.nextFloat()*sw);
 			int y = (int) (random.nextFloat()*sh - sh);

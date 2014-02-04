@@ -10,7 +10,7 @@ import com.jcf.spaceshooter.engine.Pixmap;
 public class ParticleEmitter {
 	
 	long time, starttime;
-	int lifetime, particlelifetime;
+	int lifetime, particleLifetime;
 	int swidth, sheight;
 	float dir, range, intensity, partVel, velx, vely, x, y, width;
 	ArrayList<Particle> particles;
@@ -45,7 +45,7 @@ public class ParticleEmitter {
 		partVel = particleVelocity;
 		particles = new ArrayList<Particle>();
 		lifetime = emiterLifetimeMilis;
-		particlelifetime = particleLifetimeMilis;
+		particleLifetime = particleLifetimeMilis;
 		this.intensity = intensity;
 		this.pixmap = pixmap;
 		velx = vely = 0;
@@ -77,18 +77,16 @@ public class ParticleEmitter {
 	
 	public void emit(int time)
 	{
-		//Log.d("emituje", "lifetime " + lifetime + " time " + this.time + " intensity " + intensity + " time " + time );
 		if(this.time <= lifetime)
 			for(int i = 0; i < intensity*time; i++)
 			{
-				Log.d("emituje", "dodaje " + i);
 				float vx,vy;
 				float rot = dir + (float)Math.random()*range;
 				float vel = (float)Math.random();
 				vx = vel*partVel * (float)Math.cos(rot) + velx*3;
 				vy = vel*partVel * (float)Math.sin(rot) + vely*3;
 				double random = width*Math.random();
-				particles.add(new Particle((int)(x + vel*width*Math.cos(rot)), (int)(y+ vel*width*Math.sin(rot)), vx, vy,(int)(particlelifetime*(Math.random()*0.5+0.5)), swidth, sheight, pixmap));
+				particles.add(new Particle((int)(x + vel*width*Math.cos(rot)), (int)(y+ vel*width*Math.sin(rot)), vx, vy,(int)(particleLifetime*(Math.random()*0.5+0.5)), swidth, sheight, pixmap));
 			}
 	}
 	
