@@ -118,9 +118,11 @@ public class Graphics {
 	}
 	
 	public void drawRotatedPixmap(Pixmap pixmap, int x, int y, float angle) {
-		canvas.rotate(-angle);
-		canvas.drawBitmap(pixmap.bitmap, x, y, null);
-		canvas.restore();
+		Matrix matrix = new Matrix();
+		matrix.postTranslate(-pixmap.getWidth() / 2, -pixmap.getHeight() / 2); // Centers image
+		matrix.postRotate(angle);
+		matrix.postTranslate(x, y);
+		canvas.drawBitmap(pixmap.bitmap, matrix, null);
 	}
 	
 	/*
