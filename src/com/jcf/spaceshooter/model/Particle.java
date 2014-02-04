@@ -17,6 +17,7 @@ public class Particle extends SpaceObject {
 	public boolean update(int time)
 	{
 		chuj+=time;
-		return super.update(time) && chuj<lifetime;
+		super.update(time);
+		return chuj<lifetime;
 	}
 }

@@ -1,21 +1,18 @@
 package com.jcf.spaceshooter.model;
 
 
-import android.widget.AbsoluteLayout;
-
 import com.jcf.spaceshooter.engine.Assets;
 
-public class SpaceShuttle extends SpaceObject{
+public class SpaceShuttle extends InteractiveSpaceObject{
 
 	TouchPad tp;
 	Gun activeGun, machineGun;
 	
 	public SpaceShuttle (int screenWidth, int screenHeight ,TouchPad tp, Bullets bullets) 
 	{
-		super(300,300,0f,0f, screenWidth, screenHeight , Assets.rocket);
+		super(screenWidth/2,(int)(screenHeight*0.8),0f,0f, screenWidth, screenHeight , Assets.rocket);
 		this.tp = tp;
 		hp = 100;
-		actualizeDimensions();
 		machineGun = new MachineGun(bullets, swidth, sheight);
 		activeGun = machineGun;
 	}
@@ -23,8 +20,8 @@ public class SpaceShuttle extends SpaceObject{
 
 	public boolean update(int time) {
 		
-		if(tp.get_y1()>0)
-			activeGun.fire((int)(4000 / tp.get_y1()),(int)x,(int)y,rot);
+		//if(tp.get_y1()>0)
+		activeGun.fire(40,(int)x,(int)y,rot);
 		
 		double cap = 150;
 		

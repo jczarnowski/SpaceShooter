@@ -1,6 +1,6 @@
 package com.jcf.spaceshooter.model;
 
-import com.jcf.spaceshooter.Assets;
+import com.jcf.spaceshooter.engine.Assets;
 
 public class Ufo extends Enemy {
 
@@ -18,15 +18,7 @@ public class Ufo extends Enemy {
 	{	
 		lifetime += time;
 		vx = (float)(15*Math.sin(lifetime/100));
-		super.update(time);
-		
-		if (y > sheight + getHeight())
-			{
-				return false;
-			}
-		else
-		{
-			return true;
-		}
+
+		return(super.update(time) );
 	}
 }

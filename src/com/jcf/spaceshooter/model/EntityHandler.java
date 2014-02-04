@@ -1,5 +1,9 @@
 package com.jcf.spaceshooter.model;
 
+import java.util.ArrayList;
+
+import android.util.Log;
+
 import com.jcf.spaceshooter.engine.Graphics;
 
 
@@ -9,15 +13,15 @@ public class EntityHandler {
 	private Bullets bullets;
 	private Enemies enemies;
 	SpaceShuttle ss;
+	ScreenGrid sg;
 
-	public EntityHandler(int width, int height, TouchPad tp)
+	public EntityHandler(int screenWidth, int screenHeight, TouchPad tp)
 	{
-		bullets = new Bullets(width, height);
-		ss = new SpaceShuttle( width, height, tp, bullets);
-		asteroids = new Asteroids(width, height, ss);
-		enemies = new Enemies(width, height, ss);
-		bullets.setAsteroids(asteroids);
-		bullets.setEnemiess(enemies);
+		bullets = new Bullets(screenWidth, screenHeight,ss);
+		ss = new SpaceShuttle( screenWidth, screenHeight, tp, bullets);
+		asteroids = new Asteroids(screenWidth, screenHeight, ss);
+		enemies = new Enemies(screenWidth, screenHeight, ss);
+		sg = new ScreenGrid(screenWidth, screenHeight, 10, 5);
 	}
 
 	public void update(int time)
@@ -26,34 +30,47 @@ public class EntityHandler {
 		asteroids.update(time);
 		enemies.update(time);
 		bullets.update(time);
+		
+		Log.d("b",Integer.toString(bullets.size()));
+		
+		sg.clear();
+		
+		bullets.register(sg);
+		asteroids.register(sg);
+		enemies.register(sg);
+	
 		handleCollisions();
-		
-		
 	}
-
+	
 	private void handleCollisions()
 	{
-
+		ArrayList<InteractiveSpaceObject> obj;
+		for(int i = 0;i<sg.getHorSharNum();i++)
+		{
+			for(int j = 0; j<sg.getVerSharNum();j++)
+			{
+				obj = sg.getObjectList(i, j);
+				for(int k = 0; k< obj.size();k++)
+				{
+					//inside cell
+					for(int l = k+1; l< obj.size();l++)
+					{
+						obj.get(k).colisionDetection(obj.get(l));
+					}
+					
+					//between cells
+					if(i+1<sg.getHorSharNum())
+					{
+						ArrayList<InteractiveSpaceObject> objNextCell = sg.getObjectList(i+1, j);
+						for(int l = 0; l< objNextCell.size();l++)
+						{
+							obj.get(k).colisionDetection(objNextCell.get(l));
+						}
+					}
+				}
+			}
+		}
 	}
-
-//	public boolean simpleCollisionDetection(int i, double x, double y, double width, double height) {
-//
-//		for(Asteroid a:asteroidsList)
-//		{
-//			double w =  a.getWidth()/2;
-//			double h =  a.getHeight()/2;
-//			if(	a.getX()+w > x &&
-//					a.getX()-w < x + width &&
-//					a.getY()+h > y &&
-//					a.getY()-h < y )
-//			{
-//				a.clean();
-//				asteroidsList.remove(a);
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
 
 	public void draw(Graphics g)
 	{

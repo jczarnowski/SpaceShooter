@@ -1,64 +1,46 @@
 package com.jcf.spaceshooter.model;
 
-import java.util.ArrayList;
+import java.util.Random;
 
-import com.jcf.spaceshooter.engine.Graphics;
+public class Bullets extends SpaceObjectsHandler{
 
-public class Bullets{
-
-	ArrayList<Bullet> bullets;
-	int sh, sw;
-	Asteroids asteroids;
-	Enemies enemies;
-	
-	public Bullets(int screenWidth, int screenHeight)
+	public Bullets(int screenWidth, int screenHeight, SpaceShuttle ss)
 	{
-		sh = screenHeight;
-		sw = screenWidth;
-		bullets = new ArrayList<Bullet>();
+		super(screenWidth, screenHeight, ss);
 	}
 	
-	public void setAsteroids(Asteroids astrds)
-	{
-		asteroids = astrds;
-	}	
-	public void setEnemiess(Enemies enems)
-	{
-		enemies = enems;
-	}
 	
 	public void update(int time)
 	{
-		for(int i = 0; i< bullets.size(); i++)
-		{
-			if(!bullets.get(i).update(time))
-			{
-				//bullets.get(i).clean();
-				bullets.remove(i--);
-				continue;
-			}
-			
-			if(bullets.get(i).colisionDetection(asteroids) || bullets.get(i).colisionDetection(enemies))
-			{
-				//bullets.get(i).clean();
-				bullets.remove(i--);
-			}
-		}
+		super.update(time);
 	}
+//	{
+//		for(int i = 0; i< spaceObjects.size(); i++)
+//		{
+//			if(!spaceObjects.get(i).update(time))
+//			{
+//				spaceObjects.remove(i--);
+//				continue;
+//			}
+//			
+////			if(bullets.get(i).colisionDetection(asteroids) || bullets.get(i).colisionDetection(enemies))
+////			{
+////				//bullets.get(i).clean();
+////				bullets.remove(i--);
+////			}
+//		}
+//	}
 	
 	public void add(int x, int y, float vx, float vy)
 	{
-		bullets.add(new Bullet(x, y, vx, vy, sw, sh, asteroids));
+		spaceObjects.add(new Bullet(x, y, vx, vy, sw, sh));
 	}
 
-	public void draw(Graphics g) {
-		for(Bullet a:bullets)
-			a.draw(g);
+	@Override
+	public void createSpaceObjects(int n) {
+		//nop
 	}
-	public int size()
-	{
-		return bullets.size();
-	}
+
 	
 	
 }

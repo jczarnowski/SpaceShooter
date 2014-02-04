@@ -20,8 +20,7 @@ public class Asteroids extends SpaceObjectsHandler{
 
 		super.update(time);
 		if(spaceObjects.size()<10)
-			createSpaceObjects(1);
-		
+			createSpaceObjects(3);
 	}
 	
 	public void createSpaceObjects(int n)

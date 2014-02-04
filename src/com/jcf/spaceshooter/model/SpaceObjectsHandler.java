@@ -1,15 +1,16 @@
 package com.jcf.spaceshooter.model;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-import com.jcf.spaceshooter.Assets;
-import com.jcf.spaceshooter.Graphics;
+import android.Manifest.permission;
 
-public class SpaceObjectsHandler {
+import com.jcf.spaceshooter.engine.Assets;
+import com.jcf.spaceshooter.engine.Graphics;
+
+public abstract class SpaceObjectsHandler {
 
 	protected ArrayList<ParticleEmitter> emitters;
-	protected ArrayList<SpaceObject> spaceObjects;
+	protected ArrayList<InteractiveSpaceObject> spaceObjects;
 	
 	SpaceShuttle ss;
 	int sw, sh;
@@ -21,7 +22,7 @@ public class SpaceObjectsHandler {
 		sw = screenWidth;
 		
 		emitters = new ArrayList<ParticleEmitter>();
-		spaceObjects = new ArrayList<SpaceObject>();
+		spaceObjects = new ArrayList<InteractiveSpaceObject>();
 	
 	}
 
@@ -45,16 +46,14 @@ public class SpaceObjectsHandler {
 
 			if (!spaceObjects.get(i).update(time)) 
 			{
+				emitters.addAll(spaceObjects.get(i).getParticleEmitters());
 				spaceObjects.remove(i);
 			}
 		}
-		
 	}
 	
-	public void createSpaceObjects(int n)
-	{
-
-	}
+	
+	abstract public void createSpaceObjects(int n);
 
 	public int count() {
 		return spaceObjects.size();
@@ -62,7 +61,7 @@ public class SpaceObjectsHandler {
 	
 	public void draw(Graphics g)
 	{
-		for(SpaceObject a:spaceObjects)
+		for(InteractiveSpaceObject a:spaceObjects)
 		{
 			a.draw(g);
 		}
@@ -73,39 +72,17 @@ public class SpaceObjectsHandler {
 		}
 	}
 	
-	public boolean simpleCollisionDetection(int i, double x, double y, double width, double height, int power) {
-
-		for(SpaceObject a:spaceObjects)
+	public void register(ScreenGrid sg)
+	{
+		for(InteractiveSpaceObject a:spaceObjects)
 		{
-			double w =  a.getWidth()/2;
-			double h =  a.getHeight()/2;
-			if(	a.getX()+w > x &&
-					a.getX()-w < x + width &&
-					a.getY()+h > y &&
-					a.getY()-h < y )
-			{
-				a.hp -= power;
-				if(a.hp < 0)
-				{
-					//add extra explosion to emitter list
-					ParticleEmitter tmpEmitter = new ParticleEmitter(20, 50,(int)(a.getX()),(int)(a.getY()),150f,0f,(float)Math.PI*2f, 4f, sw, sh, Assets.sparkBig);
-					//tmpEmitter.setVels(a.getVx(), a.getVy());
-					emitters.add(tmpEmitter);
-					ArrayList<ParticleEmitter> tmp = a.getParticleEmitters();
-					spaceObjects.remove(a);
-					if(tmp != null)
-						emitters.addAll(tmp);
-
-					return true;
-				}
-				else
-					emitters.add(new ParticleEmitter(10, 70,(int)x,(int)y,100f,0f,(float)Math.PI*2f, 0.3f, sw, sh, Assets.spark));
-				
-				return true;
-			}
+			sg.registerSpaceObject(a);
 		}
-		return false;
 	}
 	
+	public int size()
+	{
+		return spaceObjects.size();
+	}
 	
 }

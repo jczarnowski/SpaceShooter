@@ -4,7 +4,7 @@ import android.widget.AbsoluteLayout;
 
 import com.jcf.spaceshooter.engine.Pixmap;
 
-public class BackgroundStar extends SpaceObject {
+public class BackgroundStar extends InteractiveSpaceObject {
 
 	public BackgroundStar(int x, int y, float vx, float vy,	int screenWidth, int screenHeight, Pixmap pixmap) {
 		super(x, y, vx, vy, screenWidth, screenHeight, pixmap);

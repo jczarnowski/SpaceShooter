@@ -3,7 +3,7 @@ package com.jcf.spaceshooter.model;
 import com.jcf.spaceshooter.engine.Assets;
 import com.jcf.spaceshooter.engine.Pixmap;
 
-public class Asteroid extends SpaceObject {
+public class Asteroid extends Enemy {
 
 
 	public Asteroid(int x, int y, float vx, float vy, int screenWidth, int screenHeight)
@@ -16,18 +16,6 @@ public class Asteroid extends SpaceObject {
 	
 	public boolean update(int time)
 	{	
-		super.update(time);
-
-		if ((x < - getWidth() &&	vx > 0)			||
-			(x > swidth + getWidth() && vx < 0)	||
-			(y < - sheight && vy > 0)		||
-			(y > sheight + getHeight())) 
-			{
-				return false;
-			}
-		else
-		{
-			return true;
-		}
+		return super.update(time);
 	}
 }
