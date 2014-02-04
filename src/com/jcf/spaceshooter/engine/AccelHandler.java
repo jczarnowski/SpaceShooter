@@ -1,4 +1,4 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
 
 import android.content.Context;
 import android.hardware.Sensor;

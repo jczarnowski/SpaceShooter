@@ -1,7 +1,8 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;

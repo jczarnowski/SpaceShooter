@@ -1,4 +1,5 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
+
 
 import com.jcf.spaceshooter.model.SpaceShuttle;
 

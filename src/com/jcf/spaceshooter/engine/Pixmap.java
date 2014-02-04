@@ -1,8 +1,9 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
+
+import com.jcf.spaceshooter.engine.Graphics.PixmapFormat;
 
 import android.graphics.Bitmap;
 
-import com.jcf.spaceshooter.Graphics.PixmapFormat;
 
 /*
  * simple wrapper to the bitmap type.

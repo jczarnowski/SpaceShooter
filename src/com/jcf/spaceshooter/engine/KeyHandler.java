@@ -1,8 +1,8 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
 
 import java.util.ArrayList;
 
-import com.jcf.spaceshooter.KeyEvent;
+
 import android.view.View;
 import android.view.View.OnKeyListener;
 

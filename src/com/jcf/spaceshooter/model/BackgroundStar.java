@@ -2,7 +2,7 @@ package com.jcf.spaceshooter.model;
 
 import android.widget.AbsoluteLayout;
 
-import com.jcf.spaceshooter.Pixmap;
+import com.jcf.spaceshooter.engine.Pixmap;
 
 public class BackgroundStar extends SpaceObject {
 

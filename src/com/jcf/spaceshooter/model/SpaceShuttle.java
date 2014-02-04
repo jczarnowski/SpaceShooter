@@ -3,7 +3,7 @@ package com.jcf.spaceshooter.model;
 
 import android.widget.AbsoluteLayout;
 
-import com.jcf.spaceshooter.Assets;
+import com.jcf.spaceshooter.engine.Assets;
 
 public class SpaceShuttle extends SpaceObject{
 

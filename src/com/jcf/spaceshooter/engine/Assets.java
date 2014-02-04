@@ -1,4 +1,6 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
+
+import com.jcf.spaceshooter.engine.Pixmap;
 
 public class Assets {
 	public static Pixmap logo;
@@ -6,6 +8,10 @@ public class Assets {
 	public static Pixmap sound;
 	public static Pixmap nosound;
 	public static Pixmap exit;
+	public static Pixmap options_text;
+	public static Pixmap options_onoff;
+	public static Pixmap options_input;
+	public static Pixmap back;
 	public static Pixmap asteroid1;
 	public static Pixmap asteroid2;
 	public static Pixmap rocket;

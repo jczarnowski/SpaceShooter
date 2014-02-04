@@ -1,4 +1,4 @@
-package com.jcf.spaceshooter;
+package com.jcf.spaceshooter.engine;
 
 public class KeyEvent {
 	public static final int KEY_DOWN = 0;

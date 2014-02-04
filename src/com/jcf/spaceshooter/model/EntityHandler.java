@@ -1,6 +1,6 @@
 package com.jcf.spaceshooter.model;
 
-import com.jcf.spaceshooter.Graphics;
+import com.jcf.spaceshooter.engine.Graphics;
 
 
 public class EntityHandler { 

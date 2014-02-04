@@ -6,11 +6,11 @@ import android.graphics.Color;
 import android.util.Log;
 
 import com.jcf.spaceshooter.AndroidGame;
-import com.jcf.spaceshooter.Graphics;
-import com.jcf.spaceshooter.Input;
-import com.jcf.spaceshooter.KeyEvent;
-import com.jcf.spaceshooter.ShuttleController;
-import com.jcf.spaceshooter.TouchController;
+import com.jcf.spaceshooter.engine.Graphics;
+import com.jcf.spaceshooter.engine.Input;
+import com.jcf.spaceshooter.engine.KeyEvent;
+import com.jcf.spaceshooter.engine.ShuttleController;
+import com.jcf.spaceshooter.engine.TouchController;
 import com.jcf.spaceshooter.model.Background;
 import com.jcf.spaceshooter.model.EntityHandler;
 import com.jcf.spaceshooter.model.TouchPad;
