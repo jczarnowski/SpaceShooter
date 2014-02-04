@@ -10,6 +10,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
@@ -114,6 +115,12 @@ public class Graphics {
 	
 	public void drawPixmap(Pixmap pixmap, int x, int y) {
 		canvas.drawBitmap(pixmap.bitmap, x, y, null);
+	}
+	
+	public void drawRotatedPixmap(Pixmap pixmap, int x, int y, float angle) {
+		canvas.rotate(-angle);
+		canvas.drawBitmap(pixmap.bitmap, x, y, null);
+		canvas.restore();
 	}
 	
 	/*
