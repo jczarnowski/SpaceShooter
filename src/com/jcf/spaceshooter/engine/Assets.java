@@ -24,6 +24,7 @@ public class Assets {
 	public static Pixmap pad;
 	public static Pixmap spark;
 	public static Pixmap sparkBig;
+	public static Pixmap sparkBigRed;
 	public static Pixmap ufo;
 	
 	public static Sound click;

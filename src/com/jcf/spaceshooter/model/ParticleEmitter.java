@@ -12,7 +12,7 @@ public class ParticleEmitter {
 	long time, starttime;
 	int lifetime, particleLifetime;
 	int swidth, sheight;
-	float dir, range, intensity, partVel, velx, vely, x, y, width;
+	float dir, range, intensity, partVel, velx, vely, x, y, radius;
 	ArrayList<Particle> particles;
 	Pixmap pixmap;
 	
@@ -23,9 +23,9 @@ public class ParticleEmitter {
 			 screenWidth,  screenHeight,  pixmap);
 	}
 	
-	public ParticleEmitter(int i, int j, int x2, int y2,float vx,float vy, float width, float f, float g, float h, float k, int swidth2, int sheight2, Pixmap sparkBig) {
-		init( i,  j,  x2,  y2, f, g,  h,  k,  swidth2,  sheight2, sparkBig);
-		this.width = width/2;
+	public ParticleEmitter(int emiterLifetimeMilis, int particleLifetimeMilis, int x, int y,float vx,float vy, float explosionDiameter, float particleVelocity, float direction, float angleRange, float intensity, int swidth, int sheight, Pixmap pixmap) {
+		init( emiterLifetimeMilis,  particleLifetimeMilis,  x,  y, particleVelocity, direction,  angleRange,  intensity,  swidth,  sheight, pixmap);
+		this.radius = explosionDiameter/2;
 		velx = vx;
 		vely = vy;
 		
@@ -85,8 +85,8 @@ public class ParticleEmitter {
 				float vel = (float)Math.random();
 				vx = vel*partVel * (float)Math.cos(rot) + velx*3;
 				vy = vel*partVel * (float)Math.sin(rot) + vely*3;
-				double random = width*Math.random();
-				particles.add(new Particle((int)(x + vel*width*Math.cos(rot)), (int)(y+ vel*width*Math.sin(rot)), vx, vy,(int)(particleLifetime*(Math.random()*0.5+0.5)), swidth, sheight, pixmap));
+				double random = radius*Math.random();
+				particles.add(new Particle((int)(x + vel*radius*Math.cos(rot)), (int)(y+ vel*radius*Math.sin(rot)), vx, vy,(int)(particleLifetime*(Math.random()*0.5+0.5)), swidth, sheight, pixmap));
 			}
 	}
 	

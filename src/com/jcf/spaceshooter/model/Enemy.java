@@ -33,6 +33,13 @@ public class Enemy extends InteractiveSpaceObject {
 			else
 				pe.add(new ParticleEmitter(0, 200,(int)object.getX(),(int)object.getY(),0.40f,(float)Math.atan2(object.getY() - y, object.getX() -x),1, 0.2f, swidth, sheight, Assets.spark));
 		}
+		else
+			if(object instanceof SpaceShuttle)
+			{
+				hp = 0;
+				pe.add(new ParticleEmitter(0, 200,(int)x,(int)y, vx, vy,width,0.80f,0f,(float)Math.PI*2f, 30f, swidth, sheight, Assets.sparkBigRed));
+			}
+		
 	}
 	
 	public boolean update(int time)

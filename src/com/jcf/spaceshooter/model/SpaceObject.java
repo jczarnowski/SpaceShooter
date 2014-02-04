@@ -72,6 +72,7 @@ public class SpaceObject {
 	public void draw(Graphics g)
 	{
 		g.drawPixmap(pixmap, (int)(x - pixmap.getWidth()/2), (int)(y - pixmap.getHeight()/2));
+//		g.drawRotatedPixmap(pixmap, (int)(x - pixmap.getWidth()/2), (int)(y - pixmap.getHeight()/2), 45);
 	}
 	
 }

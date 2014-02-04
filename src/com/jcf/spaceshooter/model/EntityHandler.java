@@ -38,6 +38,7 @@ public class EntityHandler {
 		bullets.register(sg);
 		asteroids.register(sg);
 		enemies.register(sg);
+		sg.registerSpaceObject(ss);
 	
 		handleCollisions();
 	}

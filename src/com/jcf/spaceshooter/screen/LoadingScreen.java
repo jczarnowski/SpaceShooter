@@ -44,6 +44,8 @@ public class LoadingScreen extends Screen {
 		Assets.sparkBig = g.newPixmap("sparkBig.png", PixmapFormat.ARGB4444);
 		Assets.ufo = g.newPixmap("ufo.png", PixmapFormat.ARGB4444);
 		Assets.bullet_rocket = g.newPixmap("bullet_rocket.png", PixmapFormat.ARGB4444);
+		Assets.sparkBigRed = g.newPixmap("sparkBigRed.png", PixmapFormat.ARGB4444);
+		
 		
 		Audio a = game.getAudio();
 		// load sounds and music
