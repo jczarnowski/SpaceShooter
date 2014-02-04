@@ -18,6 +18,7 @@ public class Assets {
 	public static Pixmap star;
 	public static Pixmap planet;
 	public static Pixmap bullet;
+	public static Pixmap bullet_rocket;
 	public static Pixmap pad;
 	public static Pixmap spark;
 	public static Pixmap sparkBig;
