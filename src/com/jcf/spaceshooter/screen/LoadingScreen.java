@@ -25,6 +25,10 @@ public class LoadingScreen extends Screen {
 		Assets.sound = g.newPixmap("sound.png", PixmapFormat.ARGB4444);
 		Assets.nosound = g.newPixmap("nosound.png", PixmapFormat.ARGB4444);
 		Assets.exit = g.newPixmap("exit.png", PixmapFormat.ARGB4444);	Assets.logo = g.newPixmap("logo.jpg", PixmapFormat.ARGB4444);
+		Assets.options_text = g.newPixmap("options.png", PixmapFormat.ARGB4444);
+		Assets.options_onoff = g.newPixmap("onoff.png", PixmapFormat.ARGB4444);
+		Assets.options_input = g.newPixmap("touchaccel.png", PixmapFormat.ARGB4444);
+		Assets.back = g.newPixmap("back.png", PixmapFormat.ARGB4444);
 		Assets.asteroid1 = g.newPixmap("asteroid.png", PixmapFormat.ARGB4444);
 		Assets.asteroid2 = g.newPixmap("asteroid2.png", PixmapFormat.ARGB4444);
 		//Assets.ball = g.newPixmap("ball.png", PixmapFormat.ARGB4444);

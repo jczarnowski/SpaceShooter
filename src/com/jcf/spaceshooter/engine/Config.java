@@ -99,4 +99,9 @@ public class Config {
 	public void addHighScore(int score) {
 		
 	}
+
+	public void clearHighScores() {
+		for(int i = 0; i < highscores.length; ++i)
+			highscores[i] = -1;
+	}
 }

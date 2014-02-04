@@ -12,7 +12,7 @@ import com.jcf.spaceshooter.engine.MultiTouchHandler;
 import com.jcf.spaceshooter.engine.TouchEvent;
 
 public class MainMenuScreen extends Screen {
-	private static final int BGCOLOR = 0xFF2868b8;
+	public static final int BGCOLOR = 0xFF2868b8;
 	
 	int textX, textY;
 	int buttonWidth, buttonHeight;
@@ -33,9 +33,9 @@ public class MainMenuScreen extends Screen {
 		buttonWidth = Assets.menuText.getWidth();
 		
 		playBounds = new Rect(textX, textY, textX + buttonWidth, textY + buttonHeight);
-		scoreBounds = new Rect(textX, textY, textX + buttonWidth, textY + 2*buttonHeight);
-		optionsBounds = new Rect(textX, textY, textX + buttonWidth, textY + 3*buttonHeight);
-		helpBounds = new Rect(textX, textY, textX + buttonWidth, textY + 4*buttonHeight);
+		scoreBounds = new Rect(textX, textY + buttonHeight, textX + buttonWidth, textY + 2*buttonHeight);
+		optionsBounds = new Rect(textX, textY + 2*buttonHeight, textX + buttonWidth, textY + 3*buttonHeight);
+		helpBounds = new Rect(textX, textY + 3*buttonHeight, textX + buttonWidth, textY + 4*buttonHeight);
 		exitBounds = new Rect(10, g.getHeight()-10-Assets.exit.getHeight(), 10+Assets.exit.getWidth(), g.getHeight()-10);
 		
 		int soundX = g.getWidth() - 10 - Assets.sound.getWidth();
@@ -59,6 +59,8 @@ public class MainMenuScreen extends Screen {
 				
 				if(inBounds(x, y, playBounds))
 					game.setScreen(new GameScreen(game));
+				if(inBounds(x, y, optionsBounds))
+					game.setScreen(new OptionsScreen(game));
 				if(inBounds(x, y, soundBounds))
 					game.getConfig().soundOn = !game.getConfig().soundOn;
 				if(inBounds(x, y, exitBounds))
