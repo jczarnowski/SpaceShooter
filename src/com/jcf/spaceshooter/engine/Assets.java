@@ -20,4 +20,8 @@ public class Assets {
 	public static Pixmap bullet;
 	public static Pixmap pad;
 	public static Pixmap spark;
+	
+	public static Sound click;
+	
+	public static Music menumusic;
 }

@@ -37,6 +37,11 @@ public class OptionsScreen extends Screen {
 	public void update(int deltaTime) {
 		Input input = game.getInput();
 		
+		if(game.getConfig().soundOn)
+			Assets.menumusic.play();
+		else
+			Assets.menumusic.stop();
+		
 		// process touch events
 		ArrayList<TouchEvent> eventList = input.getTouchEvents();
 		for(int i = eventList.size()-1; i >= 0; --i) {
@@ -46,14 +51,21 @@ public class OptionsScreen extends Screen {
 				int x = input.getTouchX(i);
 				int y = input.getTouchY(i);
 				
-				if(inBounds(x, y, soundBounds))
+				if(inBounds(x, y, soundBounds)) {
+					if(!game.getConfig().soundOn) Assets.click.play(1);;
 					game.getConfig().soundOn = !game.getConfig().soundOn;
-				if(inBounds(x, y, inputBounds))
+				}
+				if(inBounds(x, y, inputBounds)) {
 					game.getConfig().controlMethod = game.getConfig().controlMethod == ShuttleController.CONTROL_TOUCH ? 
 							ShuttleController.CONTROL_ACCEL : ShuttleController.CONTROL_TOUCH;
-				if(inBounds(x, y, clearBounds))
+					if(game.getConfig().soundOn) Assets.click.play(1);;
+				}
+				if(inBounds(x, y, clearBounds)) {
+					if(game.getConfig().soundOn) Assets.click.play(1);;
 					game.getConfig().clearHighScores();
+				}
 				if(inBounds(x, y, backBounds)) {
+					if(game.getConfig().soundOn) Assets.click.play(1);;
 					game.getConfig().saveSettings();
 					game.setScreen(new MainMenuScreen(game));
 					return;
@@ -72,6 +84,8 @@ public class OptionsScreen extends Screen {
 				return;
 			}
 		}
+		
+		BackgroundStars.update(deltaTime);
 	}
 
 	@Override
@@ -80,6 +94,7 @@ public class OptionsScreen extends Screen {
 		
 		g.clear(MainMenuScreen.BGCOLOR);
 		
+		BackgroundStars.present(deltaTime, g);
 		g.drawPixmap(Assets.options_text, textX, textY);
 		
 		int mod = 1;

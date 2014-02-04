@@ -1,19 +1,21 @@
 package com.jcf.spaceshooter.screen;
 
 import java.util.ArrayList;
+import java.util.Random;
 
+import android.graphics.Point;
 import android.graphics.Rect;
+import android.sax.StartElementListener;
+
 import com.jcf.spaceshooter.AndroidGame;
 import com.jcf.spaceshooter.engine.Assets;
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.engine.Input;
-import com.jcf.spaceshooter.engine.KeyEvent;
-import com.jcf.spaceshooter.engine.MultiTouchHandler;
 import com.jcf.spaceshooter.engine.TouchEvent;
 
 public class MainMenuScreen extends Screen {
 	public static final int BGCOLOR = 0xFF2868b8;
-	
+
 	int textX, textY;
 	int buttonWidth, buttonHeight;
 	Rect playBounds;
@@ -22,6 +24,8 @@ public class MainMenuScreen extends Screen {
 	Rect helpBounds;
 	Rect soundBounds;
 	Rect exitBounds;
+	
+	float startY;
 	
 	public MainMenuScreen(AndroidGame game) {
 		super(game);
@@ -42,13 +46,24 @@ public class MainMenuScreen extends Screen {
 		int soundY = g.getHeight() - 10 - Assets.sound.getHeight();
 		soundBounds = new Rect(soundX, soundY, soundX+Assets.sound.getWidth(), soundY+Assets.sound.getHeight());
 	
+		Assets.menumusic.setLooping(true);
+		Assets.menumusic.setVolume(1);
+		
+		BackgroundStars.init(g);
+		
+		startY = game.getInput().getAccY();
 	}
 
 	@Override
 	public void update(int deltaTime) {
 		Input input = game.getInput();
 		
+		// process touch events
 		ArrayList<TouchEvent> eventList = input.getTouchEvents();
+		if(game.getConfig().soundOn)
+			Assets.menumusic.play();
+		else
+			Assets.menumusic.stop();
 		
 		for(int i = eventList.size()-1; i >= 0; --i) {
 			TouchEvent event = eventList.get(i);
@@ -57,16 +72,36 @@ public class MainMenuScreen extends Screen {
 				int x = input.getTouchX(i);
 				int y = input.getTouchY(i);
 				
-				if(inBounds(x, y, playBounds))
+				
+				if(inBounds(x, y, playBounds)) {
+					if(game.getConfig().soundOn) if(game.getConfig().soundOn) Assets.click.play(1);
 					game.setScreen(new GameScreen(game));
-				if(inBounds(x, y, optionsBounds))
+					Assets.menumusic.stop();
+					Assets.menumusic.rewind();
+					BackgroundStars.deinitialize();
+				}
+				if(inBounds(x, y, scoreBounds)) {
+					if(game.getConfig().soundOn) Assets.click.play(1);;
+					game.setScreen(new HighScoreScreen(game));
+				}
+				if(inBounds(x, y, optionsBounds)) {
+					if(game.getConfig().soundOn) Assets.click.play(1);;
 					game.setScreen(new OptionsScreen(game));
-				if(inBounds(x, y, soundBounds))
+				}
+				if(inBounds(x, y, soundBounds)) {
+					if(!game.getConfig().soundOn) Assets.click.play(1);;
 					game.getConfig().soundOn = !game.getConfig().soundOn;
-				if(inBounds(x, y, exitBounds))
-					game.finish();
-			}
+				}
+				if(inBounds(x, y, exitBounds)) {
+					if(game.getConfig().soundOn) Assets.click.play(1);;
+					game.finish();}
+				}
 		}
+		
+		// update positions of the stars
+		int gain = 5;
+		BackgroundStars.update(deltaTime);
+		BackgroundStars.bank((input.getAccY()-startY)*gain);
 	}
 
 	@Override
@@ -74,6 +109,9 @@ public class MainMenuScreen extends Screen {
 		Graphics g = game.getGraphics();
 		
 		g.clear(BGCOLOR);
+		
+		BackgroundStars.present(deltaTime, g);
+		
 		g.drawPixmap(Assets.menuText, textX, textY);
 		g.drawPixmap(Assets.exit, exitBounds.left, exitBounds.top);
 		
@@ -85,17 +123,18 @@ public class MainMenuScreen extends Screen {
 
 	@Override
 	public void pause() {
-
+		
 	}
 
 	@Override
 	public void resume() {
-
+	
 	}
 
 	@Override
 	public void dispose() {
-		
+		if(game.isFinishing())
+			Assets.menumusic.stop();
 	}
 
 }

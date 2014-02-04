@@ -2,6 +2,7 @@ package com.jcf.spaceshooter.screen;
 
 import com.jcf.spaceshooter.AndroidGame;
 import com.jcf.spaceshooter.engine.Assets;
+import com.jcf.spaceshooter.engine.Audio;
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.engine.Graphics.PixmapFormat;
 
@@ -39,9 +40,13 @@ public class LoadingScreen extends Screen {
 		Assets.star = g.newPixmap("star.png", PixmapFormat.ARGB4444);
 		Assets.spark = g.newPixmap("spark.png", PixmapFormat.ARGB4444);
 		
-		// load sounds
+		Audio a = game.getAudio();
+		// load sounds and music
+		Assets.click = a.newSound("click.wav");
+		Assets.menumusic = a.newMusic("menumusic.mp3");
 		
 		// load config from sd
+		game.getConfig().loadSettings();
 		
 		// set the next screen
 		game.setScreen(new MainMenuScreen(game));

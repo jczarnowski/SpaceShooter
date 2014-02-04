@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.util.Log;
 
 import com.jcf.spaceshooter.AndroidGame;
+import com.jcf.spaceshooter.engine.Assets;
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.engine.Input;
 import com.jcf.spaceshooter.engine.KeyEvent;
@@ -46,7 +47,6 @@ public class GameScreen extends Screen {
 		//entity handler
 		eh.update(deltaTime);
 
-		
 		// process key events (back button)
 		ArrayList<KeyEvent> keyEvents = input.getKeyEvents();
 		for(int i = keyEvents.size()-1; i >= 0; --i) {
@@ -55,6 +55,8 @@ public class GameScreen extends Screen {
 			if(event.keyCode == android.view.KeyEvent.KEYCODE_BACK)
 				game.setScreen(new MainMenuScreen(game));
 		}
+		
+		
 	}
 
 	@Override
