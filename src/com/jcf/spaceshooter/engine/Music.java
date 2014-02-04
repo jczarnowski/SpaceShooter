@@ -38,13 +38,13 @@ public class Music implements OnCompletionListener, OnPreparedListener {
 			return;
 		}
 			
-		Log.d("asd", "Playing music!");
+		//Log.d("asd", "Playing music!");
 		
 		// if the music is already playing... return
 		if(mediaPlayer.isPlaying())
 			return;
 		
-		Log.d("asd", "Not playing atm - Playing music!");
+		//Log.d("asd", "Not playing atm - Playing music!");
 		mediaPlayer.start();
 			
 	}
@@ -115,6 +115,6 @@ public class Music implements OnCompletionListener, OnPreparedListener {
 		synchronized(this) {
 			isPrepared = true;
 		}
-		Log.d("asd", "Media player is prepared!");
+		//Log.d("asd", "Media player is prepared!");
 	}
 }

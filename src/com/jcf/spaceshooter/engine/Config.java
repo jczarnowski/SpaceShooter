@@ -24,7 +24,7 @@ public class Config {
 		
 		// delete all highscores
 		for(int i = 0; i < highscores.length; ++i)
-			highscores[i] = -1;
+			highscores[i] = 0;
 	}
 	
 	public boolean saveSettings() {
@@ -118,7 +118,7 @@ public class Config {
 
 	public void clearHighScores() {
 		for(int i = 0; i < highscores.length; ++i)
-			highscores[i] = -1;
+			highscores[i] = 0;
 		
 		Log.d("Config", "Cleared highscores!");
 		print_highscores();

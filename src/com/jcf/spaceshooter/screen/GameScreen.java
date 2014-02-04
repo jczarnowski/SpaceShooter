@@ -73,7 +73,7 @@ public class GameScreen extends Screen {
 
 	@Override
 	public void pause() {
-
+		
 	}
 
 	@Override

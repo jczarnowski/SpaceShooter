@@ -1,6 +1,7 @@
 package com.jcf.spaceshooter.screen;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.graphics.Rect;
 import android.util.Log;
@@ -26,12 +27,20 @@ public class HighScoreScreen extends Screen {
 	public void update(int deltaTime) {
 		Input input = game.getInput();
 		
+		if(game.getConfig().soundOn)
+			Assets.menumusic.play();
+		else
+			Assets.menumusic.stop();
+		
 		// process touch events
 		ArrayList<TouchEvent> eventList = input.getTouchEvents();
 		for(int i = eventList.size()-1; i >= 0; --i) {
 			TouchEvent event = eventList.get(i);
 			
 			if(event.type == TouchEvent.TOUCH_DOWN) {
+				Random gen = new Random();
+				game.getConfig().addScore(Math.abs(gen.nextInt()));
+				
 				int x = input.getTouchX(i);
 				int y = input.getTouchY(i);
 				
@@ -41,8 +50,6 @@ public class HighScoreScreen extends Screen {
 				}
 			}
 		}
-		
-		Log.d("acc", "accel sensor: " + input.getAccX() + ", " + input.getAccY() + ", " + input.getAccZ());
 		
 		// process key events (back button)
 		ArrayList<KeyEvent> keyEvents = input.getKeyEvents();
@@ -63,17 +70,39 @@ public class HighScoreScreen extends Screen {
 		
 		g.clear(MainMenuScreen.BGCOLOR);
 		BackgroundStars.present(deltaTime, g);
+		
+		g.drawPixmap(Assets.highscores, (g.getWidth()-Assets.highscores.getWidth())/2, 90);
+		
+		// draw the scores
+		int highscore_num_x = 230;
+		int highscore_start_y = 150;
+		int highscore_linegap = 30;
+		int highscore_numgap = 30;
+		
+		int[] highscores = game.getConfig().highscores;
+		for(int i = 0; i < highscores.length; ++i) {
+			int x = highscore_num_x;
+			int y = highscore_start_y + i*(21+highscore_linegap);
+			g.drawSingleNumber(x, y, Integer.toString(i+1).charAt(0));
+			x += 21;
+			g.drawSingleNumber(x, y, '.');
+			
+			x += 21 + highscore_numgap;
+			
+			g.drawNumber(x, y, highscores[i]);
+		}
+		
 		g.drawPixmap(Assets.back, backBounds.left, backBounds.top);
 	}
 
 	@Override
 	public void pause() {
-
+		Assets.menumusic.stop();
 	}
 
 	@Override
 	public void resume() {
-
+		Assets.menumusic.play();
 	}
 
 	@Override

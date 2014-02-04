@@ -116,12 +116,12 @@ public class OptionsScreen extends Screen {
 
 	@Override
 	public void pause() {
-
+		Assets.menumusic.stop();
 	}
 
 	@Override
 	public void resume() {
-
+		Assets.menumusic.play();
 	}
 
 	@Override

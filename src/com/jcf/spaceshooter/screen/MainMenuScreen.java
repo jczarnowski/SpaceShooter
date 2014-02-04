@@ -1,11 +1,8 @@
 package com.jcf.spaceshooter.screen;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-import android.graphics.Point;
 import android.graphics.Rect;
-import android.sax.StartElementListener;
 
 import com.jcf.spaceshooter.AndroidGame;
 import com.jcf.spaceshooter.engine.Assets;
@@ -123,12 +120,12 @@ public class MainMenuScreen extends Screen {
 
 	@Override
 	public void pause() {
-		
+		Assets.menumusic.stop();
 	}
 
 	@Override
 	public void resume() {
-	
+		Assets.menumusic.play();
 	}
 
 	@Override

@@ -30,6 +30,8 @@ public class LoadingScreen extends Screen {
 		Assets.options_onoff = g.newPixmap("onoff.png", PixmapFormat.ARGB4444);
 		Assets.options_input = g.newPixmap("touchaccel.png", PixmapFormat.ARGB4444);
 		Assets.back = g.newPixmap("back.png", PixmapFormat.ARGB4444);
+		Assets.numbers = g.newPixmap("numbers.png", PixmapFormat.ARGB4444);
+		Assets.highscores = g.newPixmap("highscores.png", PixmapFormat.ARGB4444);
 		Assets.asteroid1 = g.newPixmap("asteroid.png", PixmapFormat.ARGB4444);
 		Assets.asteroid2 = g.newPixmap("asteroid2.png", PixmapFormat.ARGB4444);
 		//Assets.ball = g.newPixmap("ball.png", PixmapFormat.ARGB4444);
