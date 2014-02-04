@@ -7,18 +7,22 @@ import com.jcf.spaceshooter.engine.Assets;
 
 public class SpaceShuttle extends InteractiveSpaceObject{
 
-	TouchPad tp;
 	Gun activeGun, machineGun, bazooka;
+	private float acc = 0.01f;
 	
-	public SpaceShuttle (int screenWidth, int screenHeight ,TouchPad tp, Bullets bullets) 
+	private float desiredVx = 0;
+	
+	public void setVx(float d) {
+		desiredVx = d;
+	}
+	
+	public SpaceShuttle (int screenWidth, int screenHeight , Bullets bullets) 
 	{
-		super(screenWidth/2,(int)(screenHeight*0.8),0f,0f, screenWidth, screenHeight , Assets.rocket);
-		this.tp = tp;
+		super(screenWidth/2,(int)(screenHeight*0.9),0f,0f, screenWidth, screenHeight , Assets.rocket);
 		hp = 100;
 		machineGun = new MachineGun(bullets, swidth, sheight);
 		bazooka = new Bazooka(bullets, swidth, sheight);
 		activeGun = bazooka;
-		x = 300;
 	}
 
 
@@ -28,11 +32,18 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 		
 		rot = (float)(Math.atan2(vx,-vy + 200)*180/3.14);
 		
-		if(time != 0)
+		if(vx < desiredVx)
 		{
-			vx = (tp.get_sumx() - x)/time;
-			vy = (tp.get_sumy() - y)/time;
+			vx = Math.min(vx+acc*time,desiredVx);
 		}
+		else
+			if(vx > desiredVx)
+			{
+				vx = Math.max(vx-acc*time,desiredVx);
+			}
+
+			
+		
 		
 		super.update(time);
 		
@@ -51,4 +62,7 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 		}
 		return true;
 	}
+
+
+
 }

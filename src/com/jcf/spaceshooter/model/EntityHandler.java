@@ -15,10 +15,10 @@ public class EntityHandler {
 	SpaceShuttle ss;
 	ScreenGrid sg;
 
-	public EntityHandler(int screenWidth, int screenHeight, TouchPad tp)
+	public EntityHandler(int screenWidth, int screenHeight)
 	{
 		bullets = new Bullets(screenWidth, screenHeight,ss);
-		ss = new SpaceShuttle( screenWidth, screenHeight, tp, bullets);
+		ss = new SpaceShuttle( screenWidth, screenHeight, bullets);
 		asteroids = new Asteroids(screenWidth, screenHeight, ss);
 		enemies = new Enemies(screenWidth, screenHeight, ss);
 		sg = new ScreenGrid(screenWidth, screenHeight, 10, 5);
@@ -79,5 +79,9 @@ public class EntityHandler {
 		enemies.draw(g);
 		asteroids.draw(g);
 		
+	}
+
+	public SpaceShuttle getShuttle() {
+		return ss;
 	}
 }

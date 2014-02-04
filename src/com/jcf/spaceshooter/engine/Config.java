@@ -15,7 +15,7 @@ public class Config {
 	FileIO fileIO;
 	
 	// config data
-	public boolean soundOn = true;
+	public boolean soundOn = false;
 	public int controlMethod = ShuttleController.CONTROL_TOUCH;
 	public int[] highscores = new int[5];
 	

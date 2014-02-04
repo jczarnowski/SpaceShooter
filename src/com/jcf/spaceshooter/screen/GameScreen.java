@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.util.Log;
 
 import com.jcf.spaceshooter.AndroidGame;
+import com.jcf.spaceshooter.engine.AccelController;
 import com.jcf.spaceshooter.engine.Assets;
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.engine.Input;
@@ -22,28 +23,34 @@ public class GameScreen extends Screen {
 	Graphics g;
 	Background bg;
 	EntityHandler eh;
-	TouchPad tp;
-	
+
 	public GameScreen(AndroidGame game) {
 		super(game);
 		g = game.getGraphics();
-		tp = new TouchPad(g.getWidth(), g.getHeight(), 200, 200);
 		bg = new Background(g.getWidth(), g.getHeight());
-		eh = new EntityHandler(g.getWidth(), g.getHeight(), tp);
-		shuttleController = new TouchController(game.getInput());
+		eh = new EntityHandler(g.getWidth(), g.getHeight());
+		switch(game.getConfig().controlMethod)
+		{
+		case ShuttleController.CONTROL_TOUCH:
+			shuttleController = new TouchController(game.getInput(), g.getWidth());
+			break;
+		case ShuttleController.CONTROL_ACCEL: 
+			shuttleController = new AccelController(game.getInput());
+			break;
+		}
 
 	}
-	
+
 	@Override
 	public void update(int deltaTime) {
-		
+
 		Log.d("asd", Float.toString(1000.f/deltaTime));
-		
+
 		Input input = game.getInput();
-		
+
 		//controll
-		tp.update(input);
-		
+		shuttleController.ControlShuttle(eh.getShuttle());
+
 		//model update
 		//background
 		bg.update(deltaTime);
@@ -54,29 +61,28 @@ public class GameScreen extends Screen {
 		ArrayList<KeyEvent> keyEvents = input.getKeyEvents();
 		for(int i = keyEvents.size()-1; i >= 0; --i) {
 			KeyEvent event = keyEvents.get(i);
-			
+
 			if(event.keyCode == android.view.KeyEvent.KEYCODE_BACK)
 				game.setScreen(new MainMenuScreen(game));
 		}
-		
-		
+
+
 	}
 
 	@Override
 	public void present(int deltaTime) {
-		
+
 		g.clear(Color.BLACK);
 		Graphics g = game.getGraphics();
-		
+
 		bg.draw(g);
 		eh.draw(g);
-		tp.draw(g);
 
 	}
 
 	@Override
 	public void pause() {
-		
+
 	}
 
 	@Override
