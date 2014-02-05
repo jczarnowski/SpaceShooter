@@ -17,6 +17,7 @@ public class Assets {
 	public static Pixmap gameover;
 	public static Pixmap highscores;
 	public static Pixmap[] asteroid;
+	public static Pixmap[] asteroid_gray;
 	public static Pixmap rocket;
 	public static Pixmap[] star;
 	public static Pixmap planet;
