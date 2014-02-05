@@ -2,17 +2,22 @@ package com.jcf.spaceshooter.model;
 
 import java.util.ArrayList;
 
+import android.graphics.Color;
+
 import com.jcf.spaceshooter.engine.Assets;
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.engine.Pixmap;
+import com.jcf.spaceshooter.screen.MainMenuScreen;
 
 public class Background {
 	float y;
 	ArrayList<BackgroundStar> stars;
 
-	float starVelocity = 0.7f;
-	float planetVelocity = 0.09f; 
-	
+	float starVelocity = 0.1f;
+	float reqStarVelocity = 0.1f;
+	float planetVelocity = 0f; 
+	float colorR = 0, colorG = 0, colorB = 0, rr = 0, rg = 0, rb = 0;
+	int color;
 	protected int swidth, sheight;
 	
 	public Background(int screenWidth, int screenHeight)
@@ -23,6 +28,7 @@ public class Background {
 		stars = new ArrayList<BackgroundStar>();
 		addStars(50);
 		//addPlanets(1);
+		color = MainMenuScreen.BGCOLOR;
 		
 	}
 	
@@ -45,18 +51,34 @@ public class Background {
 	
 	public void update(int time)
 	{
+		float a1 = 0.95f, a2 = 0.05f;
+		//color = (int)(a1*color + a2*reqColor);
+		starVelocity = a1*(float)starVelocity + a2*(float)reqStarVelocity;
 		for(BackgroundStar a: stars)
-			if(!a.update(time))
+		{
+			if(!a.update(time, starVelocity))
 			{
 				a.setY(a.getY() - sheight);
 				a.setX((float)(Math.random()*swidth));
 			}
+		}
 	}	
 	
 	public void draw(Graphics g)
-	{
+	{		
+		g.clear(color);
+		
 		for(BackgroundStar a: stars)
 			a.draw(g);
+	}
+
+	public void setSpeed(float f) {
+		reqStarVelocity = f;
+		
+	}
+
+	public void setColor(int c) {
+		color = c;
 	}
 	
 }

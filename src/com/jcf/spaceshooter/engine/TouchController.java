@@ -28,6 +28,7 @@ public class TouchController extends ShuttleController {
 		{	
 			switch (e.get(i).type) {
 				case MotionEvent.ACTION_MOVE:
+				case MotionEvent.ACTION_DOWN:
 				{
 					if(e.get(i).x > width/2)
 						right = true;

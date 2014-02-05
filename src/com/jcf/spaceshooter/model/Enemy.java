@@ -7,7 +7,6 @@ import com.jcf.spaceshooter.engine.Pixmap;
 
 public class Enemy extends InteractiveSpaceObject {
 
-	protected EnemyBullet bullet;
 	
 	public Enemy(int x, int y, float vx, float vy, int screenWidth,
 			int screenHeight, Pixmap pixmap) {
@@ -53,48 +52,7 @@ public class Enemy extends InteractiveSpaceObject {
 		
 		if(Math.random() < 0.2) 
 		{
-			double tmp = Math.random();
-			int gtype = 0;
-			if(tmp<0.33)
-				gtype = Gun.BAZOOKA;
-			else
-				if(tmp<0.66)
-					gtype = Gun.MACHINE_GUN;
-				else
-					gtype = Gun.CRAZY;
-			
-			int btype;
-			Pixmap p = Assets.fnf;
-			tmp = Math.random();
-
-			if(tmp<0.3)
-			{
-				btype = BonusDrop.UPGRADE;
-				p = Assets.bonusUpgrade;
-			}
-			else
-				if(tmp < 0.6)
-				{
-					btype = BonusDrop.SWITCH;
-					switch(gtype)
-					{
-					case Gun.BAZOOKA:
-						p = Assets.bonusBazooka;
-						break;
-					case Gun.MACHINE_GUN:
-						p = Assets.bonusMachinegun;
-						break;
-					case Gun.CRAZY:
-						p = Assets.bonusCrazy;
-						break;
-					}
-				}
-				else
-				{
-					btype = BonusDrop.LIFEUP;
-					p = Assets.lifeUp;
-				}
-			bonus = new BonusDrop((int)x, (int)y, 0, vy, swidth, sheight, p ,btype ,gtype);
+			bonus = new BonusDrop((int)x, (int)y, 0f, vy, swidth, sheight);
 		}
 	}
 
@@ -103,10 +61,4 @@ public class Enemy extends InteractiveSpaceObject {
 		return super.update(time) && (y <= sheight + getHeight());
 	}
 	
-	EnemyBullet getBullet()
-	{
-		EnemyBullet tmp = bullet;
-		bullet = null;
-		return tmp;
-	}
 }

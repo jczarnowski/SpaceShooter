@@ -50,6 +50,7 @@ public class LoadingScreen extends Screen {
 		Assets.sparkBig = g.newPixmap("sparkBig.png", PixmapFormat.ARGB4444);
 		Assets.sparkBigBlue = g.newPixmap("sparkBigBlue.png", PixmapFormat.ARGB4444);
 		Assets.ufo = g.newPixmap("ufo.png", PixmapFormat.ARGB4444);
+		Assets.ufo2 = g.newPixmap("ufo2.png", PixmapFormat.ARGB4444);
 		Assets.bullet_rocket = g.newPixmap("bullet_rocket.png", PixmapFormat.ARGB4444);
 		Assets.bonusMachinegun = g.newPixmap("bonusMachinegun.png", PixmapFormat.ARGB4444);
 		Assets.bonusBazooka = g.newPixmap("bonusBazooka.png", PixmapFormat.ARGB4444);
@@ -59,6 +60,7 @@ public class LoadingScreen extends Screen {
 		Assets.fnf = g.newPixmap("fnf.png", PixmapFormat.ARGB4444);
 		Assets.life = g.newPixmap("life.png", PixmapFormat.ARGB4444); 
 		Assets.lifeUp = g.newPixmap("lifeUp.png", PixmapFormat.ARGB4444); 
+		Assets.enemyBullet = g.newPixmap("enemyBullet.png", PixmapFormat.ARGB4444); 
 		
 		
 		// load sounds

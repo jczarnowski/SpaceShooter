@@ -11,12 +11,48 @@ public class BonusDrop extends InteractiveSpaceObject{
 	public int gunType;
 	
 	
-	public BonusDrop(int x, int y, float vx, float vy, int screenWidth,
-			int screenHeight, Pixmap pixmap, int bonusType, int gunType) {
-		super(x, y, vx, vy, screenWidth, screenHeight, pixmap);
+	public BonusDrop(int x, int y, float vx, float vy, int screenWidth,	int screenHeight) {
+		super(x, y, vx, vy, screenWidth, screenHeight, Assets.lifeUp);
 		type = type.BONUS;
-		this.bonusType = bonusType;
-		this.gunType = gunType;
+		
+		double tmp = Math.random();
+		if(tmp<0.33)
+			gunType = Gun.BAZOOKA;
+		else
+			if(tmp<0.66)
+				gunType = Gun.MACHINE_GUN;
+			else
+				gunType = Gun.CRAZY;
+		
+		tmp = Math.random();
+		if(tmp<0.45)
+		{
+			bonusType = BonusDrop.UPGRADE;
+			pixmap = Assets.bonusUpgrade;
+		}
+		else
+			if(tmp < 0.9)
+			{
+				bonusType = BonusDrop.SWITCH;
+				switch(gunType)
+				{
+				case Gun.BAZOOKA:
+					pixmap = Assets.bonusBazooka;
+					break;
+				case Gun.MACHINE_GUN:
+					pixmap = Assets.bonusMachinegun;
+					break;
+				case Gun.CRAZY:
+					pixmap = Assets.bonusCrazy;
+					break;
+				}
+			}
+			else
+			{
+				bonusType = BonusDrop.LIFEUP;
+				pixmap = Assets.lifeUp;
+			}
+		
 		hp = 1;
 		realWidth = (int)(0.5 * imageWidth);
 		realHeight = (int)(0.5*imageHeight);

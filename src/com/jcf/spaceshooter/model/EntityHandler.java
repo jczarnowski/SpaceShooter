@@ -22,14 +22,16 @@ public class EntityHandler {
 	float fps, maxfps, minfps=1000;
 	long start, stop;
 	float coldettime;
+	int lvl;
 
 	public EntityHandler(int screenWidth, int screenHeight)
 	{
 		player = new PlayerObjectsHandler(screenWidth, screenHeight);
-		enemies = new EnemiesHandler(screenWidth, screenHeight, player.getShuttle(),10,10,0);
+		enemies = new EnemiesHandler(screenWidth, screenHeight, player.getShuttle(),4,0,0);
 		playersGrid = new ScreenGrid(screenWidth, screenHeight, 5, 5);
 		enemiesGrid = new ScreenGrid(screenWidth, screenHeight, 5, 5);
 		displayedPoints = points = 0; 
+		lvl = 0;
 	}
 
 	public void update(int time)
@@ -48,6 +50,35 @@ public class EntityHandler {
 		
 		lastLoopTime = time;
 	}
+	
+	public void lvlUp(int level)
+	{
+		switch(level)
+		{
+		case 1:	
+			enemies.setEntitiesNumbers(0,4,0);
+			break;
+			
+		case 2:
+			enemies.setEntitiesNumbers(0,0,3);
+			break;
+
+		case 3:
+			enemies.setEntitiesNumbers(3,3,1);
+			break;
+
+		case 4:
+			enemies.setEntitiesNumbers(3,3,3);
+			break;
+			
+		default:
+
+			enemies.setEntitiesNumbers(level/2+2,level/2+2,level/2+2);
+			break;
+			
+		}
+	}
+	
 	
 	private void handleCollisions()
 	{
@@ -110,10 +141,10 @@ public class EntityHandler {
 			maxfps = Math.max(tmp, maxfps);
 			minfps = Math.min(tmp, minfps);
 		}
-		g.drawNumberYellow(g.getWidth() - 21 * 2 - 31, g.getHeight() - 40, (int)fps);
-		g.drawNumberYellow(g.getWidth() - 21 * 2 - 31, g.getHeight() - 75, (int)maxfps);
-		g.drawNumberYellow(g.getWidth() - 21 * 2 - 31, g.getHeight() - 110, (int)minfps);
-		g.drawNumberYellow( 10 , g.getHeight() - 40, (int)(coldettime*100));
+		g.drawText(g.getWidth() - 21 * 2 - 40, g.getHeight() - 40, Float.toString(fps), 0xffa4a4a4);
+		g.drawText(g.getWidth() - 21 * 2 - 40, g.getHeight() - 75, Float.toString(maxfps), 0xffa4a4a4);
+		g.drawText(g.getWidth() - 21 * 2 - 40, g.getHeight() - 110, Float.toString(minfps), 0xffa4a4a4);
+		g.drawText( 10 , g.getHeight() - 40, Float.toString(coldettime*100), 0xffa4a4a4);
 			
 	}
 
