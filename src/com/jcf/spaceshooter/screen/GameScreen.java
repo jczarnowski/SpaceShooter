@@ -158,7 +158,7 @@ public class GameScreen extends Screen {
 			g.drawNumber(x + 145, y + 106, eh.getPoints());
 		}
 		
-		g.drawText(g.getWidth()/2 - 200, 25, "level: " + level+ ",  next:" + Float.toString((float)((int)(nextLevelTime/100)/10f))+"s", Color.WHITE);
+		g.drawText(g.getWidth()/2 - 200, 25, "level: " + level+ ",  next:" + Float.toString((float)((int)(nextLevelTime/10)/100f)), Color.WHITE);
 
 	}
 
