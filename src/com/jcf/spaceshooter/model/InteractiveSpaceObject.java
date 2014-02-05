@@ -99,5 +99,9 @@ public class InteractiveSpaceObject extends SpaceObject{
 	{
 		return bonus;
 	}
+	
+	public boolean isAlive() {
+		return hp > 0;
+	}
 
 }

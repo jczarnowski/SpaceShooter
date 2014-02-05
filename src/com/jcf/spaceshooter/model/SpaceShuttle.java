@@ -46,17 +46,17 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 				activeGun = crazyGun;
 				break;
 			}
-			Assets.pickup.play(0.1f);
+			Assets.pickup.play(0.6f);
 			break;
 		case BonusDrop.UPGRADE:
 			bazooka.upgrade();
 			machineGun.upgrade();
 			crazyGun.upgrade();
-			Assets.upgrade.play(0.1f);
+			Assets.upgrade.play(0.6f);
 			break;
 		case BonusDrop.LIFEUP:
 			hp++;
-			Assets.pickup.play(0.1f);
+			Assets.pickup.play(0.6f);
 			break;
 		}
 
@@ -105,13 +105,20 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 		super.colisionDetected(object);
 		if(object instanceof Enemy)
 			hp --;
+		
+		if(hp <= 0) {
+			Assets.death.play(0.4f);
+			pe.add(new ParticleEmitter(0, 200,(int)x,(int)y, vx, vy,imageWidth,0.80f,0f,(float)Math.PI*2f, 10f, swidth, sheight, Assets.sparkBig));
+		}
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		super.draw(g);
-		for(int i = 0; i< hp; i++)
-			g.drawPixmap(pixmapHp, 20*i+5, 5);
+		
+		if(hp > 0)
+			for(int i = 0; i< hp; i++)
+				g.drawPixmap(pixmapHp, 20*i+5, 5);
 	}
 
 }

@@ -115,4 +115,8 @@ public class EntityHandler {
 	public SpaceShuttle getShuttle() {
 		return ss;
 	}
+	
+	public int getPoints() {
+		return points;
+	}
 }

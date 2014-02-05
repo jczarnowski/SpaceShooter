@@ -33,6 +33,7 @@ public class LoadingScreen extends Screen {
 		Assets.back = g.newPixmap("back.png", PixmapFormat.ARGB4444);
 		Assets.numbers = g.newPixmap("numbers.png", PixmapFormat.ARGB4444);
 		Assets.numbersYellow = g.newPixmap("numbersYellow.png", PixmapFormat.ARGB4444);
+		Assets.gameover = g.newPixmap("gameover.png", PixmapFormat.ARGB4444);
 		Assets.highscores = g.newPixmap("highscores.png", PixmapFormat.ARGB4444);
 		Assets.asteroid1 = g.newPixmap("asteroid.png", PixmapFormat.ARGB4444);
 		Assets.asteroid2 = g.newPixmap("asteroid2.png", PixmapFormat.ARGB4444);
@@ -65,6 +66,7 @@ public class LoadingScreen extends Screen {
 		Assets.hit = a.newSound("hit.wav");
 		Assets.ufo_expl = a.newSound("explo2.wav");
 		Assets.pew = a.newSound("pew.wav");
+		Assets.death = a.newSound("death.wav");
 		
 		// load music
 		Assets.menumusic = a.newMusic("menumusic.mp3");
