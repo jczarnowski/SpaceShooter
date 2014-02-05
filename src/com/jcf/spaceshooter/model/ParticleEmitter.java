@@ -78,7 +78,7 @@ public class ParticleEmitter {
 	public void emit(int time)
 	{
 		if(this.time <= lifetime)
-			for(int i = 0; i < intensity*time; i++)
+			for(int i = 0; i < intensity*time && i < 15; i++)
 			{
 				float vx,vy;
 				float rot = dir + (float)Math.random()*range;

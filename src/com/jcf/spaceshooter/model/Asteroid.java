@@ -11,7 +11,8 @@ public class Asteroid extends Enemy {
 		super(x,y,vx,vy,screenWidth,screenHeight, Math.random()>0.5? Assets.asteroid1: Assets.asteroid2);
 		hp = 60;
 		power = 5;
-		vrot = (float)Math.random()*100 - 50;
+		vrot = (float)Math.random()*0.01f - 0.005f;
+		initialHp = hp;
 	}
 	
 	public boolean update(int time)

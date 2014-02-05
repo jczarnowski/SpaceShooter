@@ -121,7 +121,7 @@ public class Graphics {
 		Matrix matrix = new Matrix();
 		matrix.postTranslate(-pixmap.getWidth() / 2, -pixmap.getHeight() / 2); // Centers image
 		matrix.postRotate(angle);
-		matrix.postTranslate(x, y);
+		matrix.postTranslate(x+pixmap.getWidth()/2, y+pixmap.getHeight()/2);
 		canvas.drawBitmap(pixmap.bitmap, matrix, null);
 	}
 	
@@ -139,6 +139,13 @@ public class Graphics {
 			drawSingleNumber(x+i*21, y, nr.charAt(i));
 	}
 	
+	public void drawNumberYellow(int x, int y, int number) {
+		Pixmap workaround = Assets.numbers;
+		Assets.numbers = Assets.numbersYellow;
+		
+		drawNumber(x,y,number);
+		Assets.numbers = workaround;
+	}
 	/*
 	 * draws numbers from 0-9 and a dot
 	 */

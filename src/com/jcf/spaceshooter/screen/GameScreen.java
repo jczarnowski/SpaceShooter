@@ -15,7 +15,6 @@ import com.jcf.spaceshooter.engine.ShuttleController;
 import com.jcf.spaceshooter.engine.TouchController;
 import com.jcf.spaceshooter.model.Background;
 import com.jcf.spaceshooter.model.EntityHandler;
-import com.jcf.spaceshooter.model.TouchPad;
 
 public class GameScreen extends Screen {
 
@@ -87,7 +86,9 @@ public class GameScreen extends Screen {
 
 	@Override
 	public void resume() {
-
+		g = game.getGraphics();
+		bg = new Background(g.getWidth(), g.getHeight());
+		eh = new EntityHandler(g.getWidth(), g.getHeight());
 	}
 
 	@Override

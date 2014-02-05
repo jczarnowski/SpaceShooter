@@ -10,7 +10,7 @@ public class Background {
 	float y;
 	ArrayList<BackgroundStar> stars;
 
-	float starVelocity = 0.02f;
+	float starVelocity = 0.2f;
 	float planetVelocity = 0.05f; 
 	
 	protected int swidth, sheight;
@@ -22,7 +22,7 @@ public class Background {
 		
 		stars = new ArrayList<BackgroundStar>();
 		addStars(50);
-		addPlanets(1);
+		//addPlanets(1);
 		
 	}
 	
@@ -48,7 +48,7 @@ public class Background {
 		for(BackgroundStar a: stars)
 			if(!a.update(time))
 			{
-				a.setY(0 - a.getHeight()/2);
+				a.setY(a.getY() - sheight);
 				a.setX((float)(Math.random()*swidth));
 			}
 	}	

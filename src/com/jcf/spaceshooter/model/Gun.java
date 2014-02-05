@@ -2,10 +2,15 @@ package com.jcf.spaceshooter.model;
 
 public class Gun {
 
+	public static final int MACHINE_GUN = 0;
+	public static final int BAZOOKA = 1;
+	public static final int CRAZY = 2;
+	
 	protected long lastShotTime;
 	int width, height;
 	protected int interval;
-
+	protected int level;
+	protected int maxLevel;
 	Bullets bullets;
 	
 	public Gun(int w, int h,Bullets bullets)
@@ -14,6 +19,7 @@ public class Gun {
 		height = h;
 		lastShotTime = System.currentTimeMillis();
 		this.bullets = bullets;
+		level = 0;
 	}
 
 
@@ -33,4 +39,11 @@ public class Gun {
 			return false;
 		}
 	}
+
+
+	public void upgrade() {
+		if(level<maxLevel) level++;
+	}
+
+
 }

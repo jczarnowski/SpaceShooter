@@ -1,6 +1,5 @@
 package com.jcf.spaceshooter.model;
 
-import android.widget.AbsoluteLayout;
 
 import com.jcf.spaceshooter.engine.Pixmap;
 
@@ -15,7 +14,7 @@ public class BackgroundStar extends SpaceObject {
 	public boolean update(int time)
 	{
 		super.update(time);
-		return y<=sheight + height/2;
+		return y<=sheight + imageHeight/2;
 	}
 
 

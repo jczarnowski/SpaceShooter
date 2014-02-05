@@ -13,6 +13,7 @@ public class Assets {
 	public static Pixmap options_input;
 	public static Pixmap back;
 	public static Pixmap numbers;
+	public static Pixmap numbersYellow;
 	public static Pixmap highscores;
 	public static Pixmap asteroid1;
 	public static Pixmap asteroid2;
@@ -25,7 +26,15 @@ public class Assets {
 	public static Pixmap spark;
 	public static Pixmap sparkBig;
 	public static Pixmap sparkBigRed;
+	public static Pixmap sparkBigBlue;
 	public static Pixmap ufo;
+	public static Pixmap bonusUpgrade;
+	public static Pixmap bonusBazooka;
+	public static Pixmap bonusMachinegun;
+	public static Pixmap bonusCrazy;
+	public static Pixmap fnf;
+	public static Pixmap life;
+	public static Pixmap lifeUp;
 	
 	public static Sound click;
 	

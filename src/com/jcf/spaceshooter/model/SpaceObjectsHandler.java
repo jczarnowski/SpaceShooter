@@ -14,6 +14,7 @@ public abstract class SpaceObjectsHandler {
 	
 	SpaceShuttle ss;
 	int sw, sh;
+	int points;
 	
 	public SpaceObjectsHandler(int screenWidth, int screenHeight, SpaceShuttle s)
 	{
@@ -23,6 +24,7 @@ public abstract class SpaceObjectsHandler {
 		
 		emitters = new ArrayList<ParticleEmitter>();
 		spaceObjects = new ArrayList<InteractiveSpaceObject>();
+		points = 0;
 	
 	}
 
@@ -41,17 +43,29 @@ public abstract class SpaceObjectsHandler {
 	public void update(int time) {
 
 		updateEmitters(time);
-		
+
+		BonusDrop tmpBonus;
 		for (int i = spaceObjects.size() -1; i >= 0; i--) {
 
+			SpaceObject obj = spaceObjects.get(i);
 			if (!spaceObjects.get(i).update(time)) 
 			{
+				tmpBonus = spaceObjects.get(i).getBonus();
 				emitters.addAll(spaceObjects.get(i).getParticleEmitters());
 				spaceObjects.remove(i);
+				if(tmpBonus != null)
+					spaceObjects.add(tmpBonus);
 			}
+			points += ((InteractiveSpaceObject)obj).getPoints();
 		}
 	}
 	
+	public int getPoints()
+	{
+		int tmp = points;
+		points = 0;
+		return tmp;
+	}
 	
 	abstract public void createSpaceObjects(int n);
 

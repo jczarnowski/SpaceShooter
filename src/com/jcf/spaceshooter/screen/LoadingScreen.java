@@ -31,6 +31,7 @@ public class LoadingScreen extends Screen {
 		Assets.options_input = g.newPixmap("touchaccel.png", PixmapFormat.ARGB4444);
 		Assets.back = g.newPixmap("back.png", PixmapFormat.ARGB4444);
 		Assets.numbers = g.newPixmap("numbers.png", PixmapFormat.ARGB4444);
+		Assets.numbersYellow = g.newPixmap("numbersYellow.png", PixmapFormat.ARGB4444);
 		Assets.highscores = g.newPixmap("highscores.png", PixmapFormat.ARGB4444);
 		Assets.asteroid1 = g.newPixmap("asteroid.png", PixmapFormat.ARGB4444);
 		Assets.asteroid2 = g.newPixmap("asteroid2.png", PixmapFormat.ARGB4444);
@@ -42,9 +43,17 @@ public class LoadingScreen extends Screen {
 		Assets.star = g.newPixmap("star.png", PixmapFormat.ARGB4444);
 		Assets.spark = g.newPixmap("spark.png", PixmapFormat.ARGB4444);
 		Assets.sparkBig = g.newPixmap("sparkBig.png", PixmapFormat.ARGB4444);
+		Assets.sparkBigBlue = g.newPixmap("sparkBigBlue.png", PixmapFormat.ARGB4444);
 		Assets.ufo = g.newPixmap("ufo.png", PixmapFormat.ARGB4444);
 		Assets.bullet_rocket = g.newPixmap("bullet_rocket.png", PixmapFormat.ARGB4444);
+		Assets.bonusMachinegun = g.newPixmap("bonusMachinegun.png", PixmapFormat.ARGB4444);
+		Assets.bonusBazooka = g.newPixmap("bonusBazooka.png", PixmapFormat.ARGB4444);
+		Assets.bonusUpgrade = g.newPixmap("bonusUpgrade.png", PixmapFormat.ARGB4444);
+		Assets.bonusCrazy = g.newPixmap("bonusCrazy.png", PixmapFormat.ARGB4444);
 		Assets.sparkBigRed = g.newPixmap("sparkBigRed.png", PixmapFormat.ARGB4444);
+		Assets.fnf = g.newPixmap("fnf.png", PixmapFormat.ARGB4444);
+		Assets.life = g.newPixmap("life.png", PixmapFormat.ARGB4444); 
+		Assets.lifeUp = g.newPixmap("lifeUp.png", PixmapFormat.ARGB4444); 
 		
 		
 		Audio a = game.getAudio();

@@ -6,12 +6,12 @@ import com.jcf.spaceshooter.engine.Pixmap;
 public class Bullet extends InteractiveSpaceObject{
 
 	protected Pixmap pixmap;
-	public Bullet(int x, int y, float velx, float vely, int screenWidth, int screenHeight)
-	{
-		super(x,y,velx, vely,screenWidth,screenHeight,Assets.bullet);
-		hp = 1;
-
-	}
+//	public Bullet(int x, int y, float velx, float vely, int screenWidth, int screenHeight)
+//	{
+//		super(x,y,velx, vely,screenWidth,screenHeight,Assets.bullet);
+//		hp = 1;
+//
+//	}
 	
 	public Bullet(int x, int y, float velx, float vely, int screenWidth, int screenHeight, Pixmap pixmap)
 	{
@@ -23,10 +23,10 @@ public class Bullet extends InteractiveSpaceObject{
 
 	public boolean update(int time) {
 		
-		if (x < - width 		||
-				x > swidth + width 	||
-				y < - height		||
-				y > sheight - height) 
+		if (x < - imageWidth 		||
+				x > swidth + imageWidth 	||
+				y < 0 - imageHeight	||
+				y > sheight - imageHeight) 
 				{
 					return false;
 				}
@@ -36,13 +36,13 @@ public class Bullet extends InteractiveSpaceObject{
 
 	public boolean colisionDetection(InteractiveSpaceObject object) {
 		
-		if(object instanceof SpaceShuttle || object instanceof Bullet) return false;
+		if(object instanceof SpaceShuttle || object instanceof Bullet || object instanceof BonusDrop) return false;
 		
 		return super.colisionDetection(object);
 	}
 	
 	public void colisionDetected(InteractiveSpaceObject object) {
-		if(object instanceof SpaceShuttle || object instanceof Bullet) return;
+		if(object instanceof SpaceShuttle || object instanceof Bullet || object instanceof BonusDrop) return;
 		hp = -1;
 	}
 	

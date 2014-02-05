@@ -10,7 +10,7 @@ public class SpaceObject {
 	protected Pixmap pixmap;
 	int time = 0;
 	protected float  vx = 0, vy = 0, x , y, rot = 0, vrot = 0;
-	protected float width, height;
+	protected float imageWidth, imageHeight, realWidth, realHeight;
 	int swidth, sheight;
 	
 	public SpaceObject(int x, int y,float vx, float vy, int screenWidth, int screenHeight, Pixmap pixmap) {
@@ -22,8 +22,8 @@ public class SpaceObject {
 		this.y = y;
 		this.vx = vx;
 		this.vy = vy;
-		width = pixmap.getWidth();
-		height = pixmap.getHeight();
+		imageWidth = pixmap.getWidth();
+		imageHeight = pixmap.getHeight();
 	}
 
 	public void setX(float x) {
@@ -71,8 +71,7 @@ public class SpaceObject {
 	
 	public void draw(Graphics g)
 	{
-		g.drawPixmap(pixmap, (int)(x - pixmap.getWidth()/2), (int)(y - pixmap.getHeight()/2));
-//		g.drawRotatedPixmap(pixmap, (int)(x - pixmap.getWidth()/2), (int)(y - pixmap.getHeight()/2), 45);
+		//g.drawPixmap(pixmap, (int)(x - pixmap.getWidth()/2), (int)(y - pixmap.getHeight()/2));
+		g.drawRotatedPixmap(pixmap, (int)(x - pixmap.getWidth()/2), (int)(y - pixmap.getHeight()/2), (float)(rot/Math.PI*180 ));
 	}
-	
 }
