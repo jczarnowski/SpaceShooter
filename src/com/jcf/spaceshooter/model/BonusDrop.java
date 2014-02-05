@@ -8,6 +8,7 @@ public class BonusDrop extends InteractiveSpaceObject{
 	public static final int SWITCH = 0;
 	public static final int UPGRADE = 1;
 	public static final int LIFEUP = 2;
+	public static final int SHIELD = 3;
 	public int gunType;
 	
 	
@@ -15,7 +16,7 @@ public class BonusDrop extends InteractiveSpaceObject{
 		super(x, y, vx, vy, screenWidth, screenHeight, Assets.lifeUp);
 		type = type.BONUS;
 		
-		double tmp = Math.random();
+		double tmp = Math.random();		
 		if(tmp<0.33)
 			gunType = Gun.BAZOOKA;
 		else
@@ -49,8 +50,13 @@ public class BonusDrop extends InteractiveSpaceObject{
 			}
 			else
 			{
-				bonusType = BonusDrop.LIFEUP;
-				pixmap = Assets.lifeUp;
+				if(Math.random() < 0.5) {
+					bonusType = BonusDrop.LIFEUP;
+					pixmap = Assets.lifeUp;
+				} else {
+					bonusType = BonusDrop.SHIELD;
+					pixmap = Assets.shieldUp;
+				}
 			}
 		
 		hp = 1;
