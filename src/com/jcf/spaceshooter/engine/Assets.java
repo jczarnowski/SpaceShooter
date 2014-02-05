@@ -16,10 +16,9 @@ public class Assets {
 	public static Pixmap numbersYellow;
 	public static Pixmap gameover;
 	public static Pixmap highscores;
-	public static Pixmap asteroid1;
-	public static Pixmap asteroid2;
+	public static Pixmap[] asteroid;
 	public static Pixmap rocket;
-	public static Pixmap star;
+	public static Pixmap[] star;
 	public static Pixmap planet;
 	public static Pixmap bullet;
 	public static Pixmap bullet_rocket;
@@ -46,6 +45,6 @@ public class Assets {
 	public static Sound pew;
 	public static Sound death;
 	
-	public static Music menumusic;
+	public static Music[] music;
 	
 }

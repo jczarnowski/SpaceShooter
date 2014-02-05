@@ -12,7 +12,7 @@ import com.jcf.spaceshooter.engine.Input;
 import com.jcf.spaceshooter.engine.TouchEvent;
 
 public class MainMenuScreen extends Screen {
-	public static final int BGCOLOR = 0xFF2868b8;
+	public static final int BGCOLOR = 0xff3a2e3f; //0xff3a2e3f; //
 
 	int textX, textY;
 	int buttonWidth, buttonHeight;
@@ -43,9 +43,6 @@ public class MainMenuScreen extends Screen {
 		int soundX = g.getWidth() - 10 - Assets.sound.getWidth();
 		int soundY = g.getHeight() - 10 - Assets.sound.getHeight();
 		soundBounds = new Rect(soundX, soundY, soundX+Assets.sound.getWidth(), soundY+Assets.sound.getHeight());
-	
-		Assets.menumusic.setLooping(true);
-		Assets.menumusic.setVolume(0f);
 		
 		BackgroundStars.init(g);
 		
@@ -58,10 +55,6 @@ public class MainMenuScreen extends Screen {
 		
 		// process touch events
 		ArrayList<TouchEvent> eventList = input.getTouchEvents();
-		if(game.getConfig().soundOn)
-			Assets.menumusic.play();
-		else
-			Assets.menumusic.stop();
 		
 		for(int i = eventList.size()-1; i >= 0; --i) {
 			TouchEvent event = eventList.get(i);
@@ -74,8 +67,6 @@ public class MainMenuScreen extends Screen {
 				if(inBounds(x, y, playBounds)) {
 					if(game.getConfig().soundOn) if(game.getConfig().soundOn) Assets.click.play(0.1f);
 					game.setScreen(new GameScreen(game));
-					Assets.menumusic.stop();
-					Assets.menumusic.rewind();
 					BackgroundStars.deinitialize();
 				}
 				if(inBounds(x, y, scoreBounds)) {
@@ -121,18 +112,14 @@ public class MainMenuScreen extends Screen {
 
 	@Override
 	public void pause() {
-		Assets.menumusic.stop();
 	}
 
 	@Override
 	public void resume() {
-		Assets.menumusic.play();
 	}
 
 	@Override
 	public void dispose() {
-		if(game.isFinishing())
-			Assets.menumusic.stop();
 	}
 
 }

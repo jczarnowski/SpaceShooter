@@ -27,11 +27,6 @@ public class HighScoreScreen extends Screen {
 	public void update(int deltaTime) {
 		Input input = game.getInput();
 		
-		if(game.getConfig().soundOn)
-			Assets.menumusic.play();
-		else
-			Assets.menumusic.stop();
-		
 		// process touch events
 		ArrayList<TouchEvent> eventList = input.getTouchEvents();
 		for(int i = eventList.size()-1; i >= 0; --i) {
@@ -72,22 +67,15 @@ public class HighScoreScreen extends Screen {
 		g.drawPixmap(Assets.highscores, (g.getWidth()-Assets.highscores.getWidth())/2, 90);
 		
 		// draw the scores
-		int highscore_num_x = 230;
-		int highscore_start_y = 150;
+		int highscore_num_x = 290;
+		int highscore_start_y = 180;
 		int highscore_linegap = 30;
-		int highscore_numgap = 30;
 		
 		int[] highscores = game.getConfig().highscores;
 		for(int i = 0; i < highscores.length; ++i) {
 			int x = highscore_num_x;
-			int y = highscore_start_y + i*(21+highscore_linegap);
-			g.drawSingleNumber(x, y, Integer.toString(i+1).charAt(0));
-			x += 21;
-			g.drawSingleNumber(x, y, '.');
-			
-			x += 21 + highscore_numgap;
-			
-			g.drawNumber(x, y, highscores[i]);
+			int y = highscore_start_y + i*(22+highscore_linegap);
+			g.drawText(x, y, i+1 + ". " + Integer.toString(highscores[i]), 0xffa4a4a4);
 		}
 		
 		g.drawPixmap(Assets.back, backBounds.left, backBounds.top);
@@ -95,12 +83,10 @@ public class HighScoreScreen extends Screen {
 
 	@Override
 	public void pause() {
-		Assets.menumusic.stop();
 	}
 
 	@Override
 	public void resume() {
-		Assets.menumusic.play();
 	}
 
 	@Override

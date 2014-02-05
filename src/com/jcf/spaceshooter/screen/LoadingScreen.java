@@ -5,6 +5,8 @@ import com.jcf.spaceshooter.engine.Assets;
 import com.jcf.spaceshooter.engine.Audio;
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.engine.Graphics.PixmapFormat;
+import com.jcf.spaceshooter.engine.Music;
+import com.jcf.spaceshooter.engine.Pixmap;
 
 /*
  * Loading screen loads game assets and configuration
@@ -35,13 +37,15 @@ public class LoadingScreen extends Screen {
 		Assets.numbersYellow = g.newPixmap("numbersYellow.png", PixmapFormat.ARGB4444);
 		Assets.gameover = g.newPixmap("gameover.png", PixmapFormat.ARGB4444);
 		Assets.highscores = g.newPixmap("highscores.png", PixmapFormat.ARGB4444);
-		Assets.asteroid1 = g.newPixmap("asteroid.png", PixmapFormat.ARGB4444);
-		Assets.asteroid2 = g.newPixmap("asteroid2.png", PixmapFormat.ARGB4444);
+		Assets.asteroid = new Pixmap[6];
+		for(int i = 1; i <=6; ++i) Assets.asteroid[i-1] = g.newPixmap("asteroid" + i + ".png", PixmapFormat.ARGB4444);
 		Assets.bullet = g.newPixmap("bullet.png", PixmapFormat.ARGB4444);
 		Assets.pad = g.newPixmap("pad.png", PixmapFormat.ARGB4444);
 		Assets.planet = g.newPixmap("planet.png", PixmapFormat.ARGB4444);
 		Assets.rocket = g.newPixmap("rocket.png", PixmapFormat.ARGB4444);
-		Assets.star = g.newPixmap("star.png", PixmapFormat.ARGB4444);
+		Assets.star = new Pixmap[2];
+		for(int i = 1; i <= 2; ++i) Assets.star[i-1] = g.newPixmap("star" + i + ".png", PixmapFormat.ARGB4444);
+		
 		Assets.spark = g.newPixmap("spark.png", PixmapFormat.ARGB4444);
 		Assets.sparkBig = g.newPixmap("sparkBig.png", PixmapFormat.ARGB4444);
 		Assets.sparkBigBlue = g.newPixmap("sparkBigBlue.png", PixmapFormat.ARGB4444);
@@ -69,7 +73,8 @@ public class LoadingScreen extends Screen {
 		Assets.death = a.newSound("death.wav");
 		
 		// load music
-		Assets.menumusic = a.newMusic("menumusic.mp3");
+		Assets.music = new Music[4];
+		for(int i = 1; i <= 4; ++i) Assets.music[i-1] = a.newMusic("music" + i + ".mp3");
 		
 		// load config from sd
 		game.getConfig().loadSettings();
