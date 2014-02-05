@@ -15,17 +15,20 @@ public class EntityHandler {
 	private EnemiesHandler enemies;
 	private PlayerObjectsHandler player;
 	
-	ScreenGrid sg;
+	ScreenGrid playersGrid, enemiesGrid;
 	int points;
 	int displayedPoints;
 	int lastLoopTime;
 	float fps, maxfps, minfps=1000;
+	long start, stop;
+	float coldettime;
 
 	public EntityHandler(int screenWidth, int screenHeight)
 	{
 		player = new PlayerObjectsHandler(screenWidth, screenHeight);
 		enemies = new EnemiesHandler(screenWidth, screenHeight, player.getShuttle(),10,10,0);
-		sg = new ScreenGrid(screenWidth, screenHeight, 5, 5);
+		playersGrid = new ScreenGrid(screenWidth, screenHeight, 5, 5);
+		enemiesGrid = new ScreenGrid(screenWidth, screenHeight, 5, 5);
 		displayedPoints = points = 0; 
 	}
 
@@ -33,10 +36,11 @@ public class EntityHandler {
 	{
 		enemies.update(time);
 		player.update(time);
-		
-		sg.clear();
-		enemies.register(sg);
-		player.register(sg);
+
+		enemiesGrid.clear();
+		playersGrid.clear();
+		enemies.register(enemiesGrid);
+		player.register(playersGrid);
 	
 		handleCollisions();
 		
@@ -47,32 +51,43 @@ public class EntityHandler {
 	
 	private void handleCollisions()
 	{
-		ArrayList<InteractiveSpaceObject> obj;
-		for(int i = 0;i<sg.getHorSharNum();i++)
+		start = System.currentTimeMillis();
+		if(playersGrid.getVerSharNum() != enemiesGrid.getVerSharNum() ||playersGrid.getHorSharNum() != enemiesGrid.getHorSharNum() )
+			throw new RuntimeException("players ScreenGrid and enemies ScreenGrid differ in size!");
+		
+		ArrayList<InteractiveSpaceObject> playersObj, enemyObj, enemyObjNextCell;
+		for(int i = 0;i<playersGrid.getHorSharNum();i++)
 		{
-			for(int j = 0; j<sg.getVerSharNum();j++)
+			for(int j = 0; j<playersGrid.getVerSharNum();j++)
 			{
-				obj = sg.getObjectList(i, j);
-				for(int k = 0; k< obj.size();k++)
+				playersObj = playersGrid.getObjectList(i, j);
+				enemyObj = enemiesGrid.getObjectList(i, j);			
+				
+				if(i+1<playersGrid.getHorSharNum()){
+					enemyObjNextCell = enemiesGrid.getObjectList(i+1, j);}
+					
+				for(int k = 0; k< playersObj.size();k++)
 				{
 					//inside cell
-					for(int l = k+1; l< obj.size();l++)
+					for(int l = 0; l< enemyObj.size();l++)
 					{
-						obj.get(k).colisionDetection(obj.get(l));
+						playersObj.get(k).colisionDetection(enemyObj.get(l));
 					}
 					
 					//between cells
-					if(i+1<sg.getHorSharNum())
+					if(i+1<playersGrid.getHorSharNum())
 					{
-						ArrayList<InteractiveSpaceObject> objNextCell = sg.getObjectList(i+1, j);
+						ArrayList<InteractiveSpaceObject> objNextCell = enemiesGrid.getObjectList(i+1, j);
 						for(int l = 0; l< objNextCell.size();l++)
 						{
-							obj.get(k).colisionDetection(objNextCell.get(l));
+							playersObj.get(k).colisionDetection(objNextCell.get(l));
 						}
 					}
 				}
 			}
 		}
+		stop = System.currentTimeMillis();
+		coldettime = coldettime*0.95f + 0.05f*(float)(stop-start); 
 	}
 
 	public void draw(Graphics g)
@@ -98,6 +113,7 @@ public class EntityHandler {
 		g.drawNumberYellow(g.getWidth() - 21 * 2 - 31, g.getHeight() - 40, (int)fps);
 		g.drawNumberYellow(g.getWidth() - 21 * 2 - 31, g.getHeight() - 75, (int)maxfps);
 		g.drawNumberYellow(g.getWidth() - 21 * 2 - 31, g.getHeight() - 110, (int)minfps);
+		g.drawNumberYellow( 10 , g.getHeight() - 40, (int)(coldettime*100));
 			
 	}
 
