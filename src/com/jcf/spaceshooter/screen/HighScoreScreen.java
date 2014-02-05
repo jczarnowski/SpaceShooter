@@ -38,15 +38,12 @@ public class HighScoreScreen extends Screen {
 			TouchEvent event = eventList.get(i);
 			
 			if(event.type == TouchEvent.TOUCH_DOWN) {
-				Random gen = new Random();
-				game.getConfig().addScore(Math.abs(gen.nextInt()));
-				
 				int x = input.getTouchX(i);
 				int y = input.getTouchY(i);
 				
 				if(inBounds(x, y, backBounds)) {
 					game.setScreen(new MainMenuScreen(game));
-					if(game.getConfig().soundOn) Assets.click.play(1);
+					if(game.getConfig().soundOn) Assets.click.play(0.1f);
 				}
 			}
 		}
@@ -58,6 +55,7 @@ public class HighScoreScreen extends Screen {
 			
 			if(event.keyCode == android.view.KeyEvent.KEYCODE_BACK) {
 				game.setScreen(new MainMenuScreen(game));
+				if(game.getConfig().soundOn) Assets.click.play(0.5f);
 			}
 		}
 		

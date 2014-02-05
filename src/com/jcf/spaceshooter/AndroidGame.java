@@ -8,6 +8,7 @@ import com.jcf.spaceshooter.engine.RenderView;
 import com.jcf.spaceshooter.screen.LoadingScreen;
 import com.jcf.spaceshooter.screen.Screen;
 
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
@@ -57,6 +58,9 @@ public class AndroidGame extends Activity {
 		
 		// set our renderView as content view
 		setContentView(renderView);
+		
+		// not working -.-
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		
 		// set the current screen
 		screen = new LoadingScreen(this);

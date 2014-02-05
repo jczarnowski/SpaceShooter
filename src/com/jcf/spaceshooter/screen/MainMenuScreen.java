@@ -6,6 +6,7 @@ import android.graphics.Rect;
 
 import com.jcf.spaceshooter.AndroidGame;
 import com.jcf.spaceshooter.engine.Assets;
+import com.jcf.spaceshooter.engine.Audio;
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.engine.Input;
 import com.jcf.spaceshooter.engine.TouchEvent;
@@ -44,7 +45,7 @@ public class MainMenuScreen extends Screen {
 		soundBounds = new Rect(soundX, soundY, soundX+Assets.sound.getWidth(), soundY+Assets.sound.getHeight());
 	
 		Assets.menumusic.setLooping(true);
-		Assets.menumusic.setVolume(1);
+		Assets.menumusic.setVolume(0f);
 		
 		BackgroundStars.init(g);
 		
@@ -71,26 +72,26 @@ public class MainMenuScreen extends Screen {
 				
 				
 				if(inBounds(x, y, playBounds)) {
-					if(game.getConfig().soundOn) if(game.getConfig().soundOn) Assets.click.play(1);
+					if(game.getConfig().soundOn) if(game.getConfig().soundOn) Assets.click.play(0.1f);
 					game.setScreen(new GameScreen(game));
 					Assets.menumusic.stop();
 					Assets.menumusic.rewind();
 					BackgroundStars.deinitialize();
 				}
 				if(inBounds(x, y, scoreBounds)) {
-					if(game.getConfig().soundOn) Assets.click.play(1);;
+					if(game.getConfig().soundOn) Assets.click.play(0.1f);
 					game.setScreen(new HighScoreScreen(game));
 				}
 				if(inBounds(x, y, optionsBounds)) {
-					if(game.getConfig().soundOn) Assets.click.play(1);;
+					if(game.getConfig().soundOn) Assets.click.play(0.1f);
 					game.setScreen(new OptionsScreen(game));
 				}
 				if(inBounds(x, y, soundBounds)) {
-					if(!game.getConfig().soundOn) Assets.click.play(1);;
+					if(!game.getConfig().soundOn) Assets.click.play(0.1f);
 					game.getConfig().soundOn = !game.getConfig().soundOn;
 				}
 				if(inBounds(x, y, exitBounds)) {
-					if(game.getConfig().soundOn) Assets.click.play(1);;
+					if(game.getConfig().soundOn) Assets.click.play(0.1f);
 					game.finish();}
 				}
 		}

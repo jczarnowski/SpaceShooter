@@ -30,10 +30,8 @@ public class Enemy extends InteractiveSpaceObject {
 			points = object.power;
 			if(hp <= 0)
 			{
-				if(Math.random() < 0.1) 
+				if(Math.random() < 0.2) 
 				{
-
-
 					double tmp = Math.random();
 					int gtype = 0;
 					if(tmp<0.33)

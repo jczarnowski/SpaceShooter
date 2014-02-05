@@ -22,4 +22,13 @@ public class Ufo extends Enemy {
 		
 		return(super.update(time) );
 	}
+	
+	public void colisionDetected(InteractiveSpaceObject object) {
+		super.colisionDetected(object);
+		
+		if(hp <= 0)
+			Assets.ufo_expl.play(0.8f);
+		else
+			Assets.hit.play(0.1f);
+	}
 }

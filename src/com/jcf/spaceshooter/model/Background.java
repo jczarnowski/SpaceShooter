@@ -10,8 +10,8 @@ public class Background {
 	float y;
 	ArrayList<BackgroundStar> stars;
 
-	float starVelocity = 0.2f;
-	float planetVelocity = 0.05f; 
+	float starVelocity = 0.7f;
+	float planetVelocity = 0.09f; 
 	
 	protected int swidth, sheight;
 	

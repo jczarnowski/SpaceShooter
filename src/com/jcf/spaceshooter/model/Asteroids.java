@@ -28,8 +28,8 @@ public class Asteroids extends SpaceObjectsHandler{
 		Random  random = new Random();
 		for(int j = 0; j< n;j++)
 		{
-			float a = random.nextFloat()*0.15f + 0.10f;
-			float b = random.nextFloat()*0.30f -0.15f;
+			float a = random.nextFloat()*0.20f + 0.20f;
+			float b = random.nextFloat()*0.10f -0.05f;
 			int x = (int) (random.nextFloat()*sw);
 			int y = (int) (random.nextFloat()*sh - sh);
 			{

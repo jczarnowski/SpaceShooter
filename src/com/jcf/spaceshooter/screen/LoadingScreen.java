@@ -25,7 +25,8 @@ public class LoadingScreen extends Screen {
 		Assets.menuText = g.newPixmap("menu.png", PixmapFormat.ARGB4444);
 		Assets.sound = g.newPixmap("sound.png", PixmapFormat.ARGB4444);
 		Assets.nosound = g.newPixmap("nosound.png", PixmapFormat.ARGB4444);
-		Assets.exit = g.newPixmap("exit.png", PixmapFormat.ARGB4444);	Assets.logo = g.newPixmap("logo.jpg", PixmapFormat.ARGB4444);
+		Assets.exit = g.newPixmap("exit.png", PixmapFormat.ARGB4444);	
+		Assets.logo = g.newPixmap("logo.jpg", PixmapFormat.ARGB4444);
 		Assets.options_text = g.newPixmap("options.png", PixmapFormat.ARGB4444);
 		Assets.options_onoff = g.newPixmap("onoff.png", PixmapFormat.ARGB4444);
 		Assets.options_input = g.newPixmap("touchaccel.png", PixmapFormat.ARGB4444);
@@ -35,7 +36,6 @@ public class LoadingScreen extends Screen {
 		Assets.highscores = g.newPixmap("highscores.png", PixmapFormat.ARGB4444);
 		Assets.asteroid1 = g.newPixmap("asteroid.png", PixmapFormat.ARGB4444);
 		Assets.asteroid2 = g.newPixmap("asteroid2.png", PixmapFormat.ARGB4444);
-		//Assets.ball = g.newPixmap("ball.png", PixmapFormat.ARGB4444);
 		Assets.bullet = g.newPixmap("bullet.png", PixmapFormat.ARGB4444);
 		Assets.pad = g.newPixmap("pad.png", PixmapFormat.ARGB4444);
 		Assets.planet = g.newPixmap("planet.png", PixmapFormat.ARGB4444);
@@ -56,9 +56,17 @@ public class LoadingScreen extends Screen {
 		Assets.lifeUp = g.newPixmap("lifeUp.png", PixmapFormat.ARGB4444); 
 		
 		
+		// load sounds
 		Audio a = game.getAudio();
-		// load sounds and music
 		Assets.click = a.newSound("click.wav");
+		Assets.asteroid_expl = a.newSound("explo4.wav");
+		Assets.pickup = a.newSound("pickup.wav");
+		Assets.upgrade = a.newSound("upgrade.wav");
+		Assets.hit = a.newSound("hit.wav");
+		Assets.ufo_expl = a.newSound("explo2.wav");
+		Assets.pew = a.newSound("pew.wav");
+		
+		// load music
 		Assets.menumusic = a.newMusic("menumusic.mp3");
 		
 		// load config from sd

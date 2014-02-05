@@ -1,5 +1,7 @@
 package com.jcf.spaceshooter.model;
 
+import com.jcf.spaceshooter.engine.Assets;
+
 public class Gun {
 
 	public static final int MACHINE_GUN = 0;
@@ -32,6 +34,7 @@ public class Gun {
 			else
 				lastShotTime+=interval;
 			
+			Assets.pew.play(0.01f);
 			return true;
 		}
 		else

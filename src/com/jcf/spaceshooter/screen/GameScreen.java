@@ -38,6 +38,8 @@ public class GameScreen extends Screen {
 			break;
 		}
 
+		Assets.menumusic.setLooping(true);
+		Assets.menumusic.setVolume(0.1f);
 	}
 
 	@Override
@@ -47,6 +49,11 @@ public class GameScreen extends Screen {
 
 		Input input = game.getInput();
 
+		if(game.getConfig().soundOn)
+			Assets.menumusic.play();
+		else
+			Assets.menumusic.stop();
+		
 		//controll
 		shuttleController.ControlShuttle(eh.getShuttle());
 
@@ -81,7 +88,7 @@ public class GameScreen extends Screen {
 
 	@Override
 	public void pause() {
-
+		Assets.menumusic.stop();
 	}
 
 	@Override
@@ -89,11 +96,13 @@ public class GameScreen extends Screen {
 		g = game.getGraphics();
 		bg = new Background(g.getWidth(), g.getHeight());
 		eh = new EntityHandler(g.getWidth(), g.getHeight());
+		Assets.menumusic.play();
 	}
 
 	@Override
 	public void dispose() {
-
+		if(game.isFinishing())
+			Assets.menumusic.stop();
 	}
 
 }

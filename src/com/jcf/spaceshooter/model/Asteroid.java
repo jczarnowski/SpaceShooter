@@ -19,4 +19,13 @@ public class Asteroid extends Enemy {
 	{	
 		return super.update(time);
 	}
+	
+	public void colisionDetected(InteractiveSpaceObject object) {
+		super.colisionDetected(object);
+		
+		if(hp <= 0)
+			Assets.asteroid_expl.play(0.1f);
+		else
+			Assets.hit.play(0.05f);
+	}
 }

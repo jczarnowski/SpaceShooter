@@ -37,6 +37,13 @@ public class Assets {
 	public static Pixmap lifeUp;
 	
 	public static Sound click;
+	public static Sound asteroid_expl;
+	public static Sound ufo_expl;
+	public static Sound pickup;
+	public static Sound upgrade;
+	public static Sound hit;
+	public static Sound pew;
 	
 	public static Music menumusic;
+	
 }

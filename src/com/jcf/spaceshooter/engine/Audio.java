@@ -2,7 +2,10 @@ package com.jcf.spaceshooter.engine;
 
 import java.io.IOException;
 
+import com.jcf.spaceshooter.AndroidGame;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
@@ -18,17 +21,16 @@ public class Audio {
 	private static final int MAX_STREAMS = 30; 	// maximum concurrent sounds playing
 	AssetManager assets;
 	SoundPool soundPool;
+	private Activity activity;
 	
 	/*
 	 * Creates new Audio class handling
 	 * representing the audio subsystem
 	 */
 	public Audio(Activity activity) {
+		this.activity = activity;
 		this.assets = activity.getAssets();
 		this.soundPool = new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
-		
-		// audio buttons control our sounds
-		activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
 	
 	/*
@@ -38,7 +40,7 @@ public class Audio {
 		try {
 			AssetFileDescriptor assetDescriptor = assets.openFd(filename);
 			int soundId = soundPool.load(assetDescriptor, 0);
-			return new Sound(soundPool, soundId);
+			return new Sound(this, soundPool, soundId);
 		} catch (Exception e) {
 			Log.d("Audio", "Could not create new sound: " + filename);
 		}
@@ -62,4 +64,7 @@ public class Audio {
 		
 	}
 	
+	public boolean isSoundOn() {
+		return ((AndroidGame) activity).getConfig().soundOn;
+	}
 }

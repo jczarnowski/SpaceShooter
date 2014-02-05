@@ -52,20 +52,20 @@ public class OptionsScreen extends Screen {
 				int y = input.getTouchY(i);
 				
 				if(inBounds(x, y, soundBounds)) {
-					if(!game.getConfig().soundOn) Assets.click.play(1);;
+					if(!game.getConfig().soundOn) Assets.click.play(0.1f);;
 					game.getConfig().soundOn = !game.getConfig().soundOn;
 				}
 				if(inBounds(x, y, inputBounds)) {
 					game.getConfig().controlMethod = game.getConfig().controlMethod == ShuttleController.CONTROL_TOUCH ? 
 							ShuttleController.CONTROL_ACCEL : ShuttleController.CONTROL_TOUCH;
-					if(game.getConfig().soundOn) Assets.click.play(1);;
+					if(game.getConfig().soundOn) Assets.click.play(0.1f);;
 				}
 				if(inBounds(x, y, clearBounds)) {
-					if(game.getConfig().soundOn) Assets.click.play(1);;
+					if(game.getConfig().soundOn) Assets.click.play(0.1f);;
 					game.getConfig().clearHighScores();
 				}
 				if(inBounds(x, y, backBounds)) {
-					if(game.getConfig().soundOn) Assets.click.play(1);;
+					if(game.getConfig().soundOn) Assets.click.play(0.1f);;
 					game.getConfig().saveSettings();
 					game.setScreen(new MainMenuScreen(game));
 					return;

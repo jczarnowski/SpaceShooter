@@ -46,14 +46,17 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 				activeGun = crazyGun;
 				break;
 			}
+			Assets.pickup.play(0.1f);
 			break;
 		case BonusDrop.UPGRADE:
 			bazooka.upgrade();
 			machineGun.upgrade();
 			crazyGun.upgrade();
+			Assets.upgrade.play(0.1f);
 			break;
 		case BonusDrop.LIFEUP:
 			hp++;
+			Assets.pickup.play(0.1f);
 			break;
 		}
 
