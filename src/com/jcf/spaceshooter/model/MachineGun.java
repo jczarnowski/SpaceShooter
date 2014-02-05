@@ -1,9 +1,11 @@
 package com.jcf.spaceshooter.model;
 
+import java.util.ArrayList;
+
 public class MachineGun extends Gun {
 
 	private int amount;
-	public MachineGun(Bullets bullets, int width, int height)
+	public MachineGun(ArrayList<InteractiveSpaceObject> bullets, int width, int height)
 	{
 		super(width,height,bullets);
 		interval = 200;

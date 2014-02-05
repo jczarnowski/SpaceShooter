@@ -14,7 +14,7 @@ public class BonusDrop extends InteractiveSpaceObject{
 	public BonusDrop(int x, int y, float vx, float vy, int screenWidth,
 			int screenHeight, Pixmap pixmap, int bonusType, int gunType) {
 		super(x, y, vx, vy, screenWidth, screenHeight, pixmap);
-		
+		type = type.BONUS;
 		this.bonusType = bonusType;
 		this.gunType = gunType;
 		hp = 1;

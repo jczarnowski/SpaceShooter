@@ -7,6 +7,19 @@ import com.jcf.spaceshooter.engine.Pixmap;
 
 public class SpaceObject {
 	
+	public enum Type{
+		PARTICLE,
+		UFO,
+		AGGRESSIVE_UFO,
+		ASTEROID,
+		SPACE_SHUTTLE,
+		SHUTTLE_BULLET,
+		ENEMY_BULLET,
+		BONUS
+	} 
+	
+	public Type type;
+	
 	protected Pixmap pixmap;
 	int time = 0;
 	protected float  vx = 0, vy = 0, x , y, rot = 0, vrot = 0;
@@ -22,8 +35,8 @@ public class SpaceObject {
 		this.y = y;
 		this.vx = vx;
 		this.vy = vy;
-		imageWidth = pixmap.getWidth();
-		imageHeight = pixmap.getHeight();
+		realWidth = imageWidth = pixmap.getWidth();
+		realHeight = imageHeight = pixmap.getHeight();
 	}
 
 	public void setX(float x) {

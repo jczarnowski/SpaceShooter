@@ -1,6 +1,8 @@
 package com.jcf.spaceshooter.model;
 
 
+import java.util.ArrayList;
+
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.engine.Pixmap;
 import com.jcf.spaceshooter.engine.Assets;
@@ -18,7 +20,7 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 		desiredVx = d;
 	}
 
-	public SpaceShuttle (int screenWidth, int screenHeight , Bullets bullets) 
+	public SpaceShuttle (int screenWidth, int screenHeight , ArrayList<InteractiveSpaceObject> bullets) 
 	{
 		super(screenWidth/2,(int)(screenHeight*0.9),0f,0f, screenWidth, screenHeight , Assets.rocket);
 		hp = 7;
