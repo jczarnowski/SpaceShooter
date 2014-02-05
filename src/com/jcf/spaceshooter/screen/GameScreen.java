@@ -11,6 +11,7 @@ import com.jcf.spaceshooter.engine.Assets;
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.engine.Input;
 import com.jcf.spaceshooter.engine.KeyEvent;
+import com.jcf.spaceshooter.engine.Music;
 import com.jcf.spaceshooter.engine.ShuttleController;
 import com.jcf.spaceshooter.engine.TouchController;
 import com.jcf.spaceshooter.engine.TouchEvent;
@@ -25,7 +26,8 @@ public class GameScreen extends Screen {
 	Graphics g;
 	Background bg;
 	EntityHandler eh;
-
+	Music activemusic;
+	
 	public GameScreen(AndroidGame game) {
 		super(game);
 		g = game.getGraphics();
@@ -40,9 +42,11 @@ public class GameScreen extends Screen {
 			shuttleController = new AccelController(game.getInput());
 			break;
 		}
-
-		Assets.menumusic.setLooping(true);
-		Assets.menumusic.setVolume(0.1f);
+		
+		// random music
+		activemusic = Assets.music[(int) (Math.random()*3)];
+		activemusic.setLooping(true);
+		activemusic.setVolume(0.3f);
 	}
 
 	@Override
@@ -53,9 +57,9 @@ public class GameScreen extends Screen {
 		Input input = game.getInput();
 
 		if(game.getConfig().soundOn)
-			Assets.menumusic.play();
+			activemusic.play();
 		else
-			Assets.menumusic.stop();
+			activemusic.stop();
 		
 		if(state == PLAYING) {
 			//controll
@@ -113,7 +117,7 @@ public class GameScreen extends Screen {
 
 	@Override
 	public void pause() {
-		Assets.menumusic.stop();
+		activemusic.stop();
 	}
 
 	@Override
@@ -121,13 +125,13 @@ public class GameScreen extends Screen {
 		g = game.getGraphics();
 		bg = new Background(g.getWidth(), g.getHeight());
 		eh = new EntityHandler(g.getWidth(), g.getHeight());
-		Assets.menumusic.play();
+		activemusic.play();
 	}
 
 	@Override
 	public void dispose() {
 		if(game.isFinishing())
-			Assets.menumusic.stop();
+			activemusic.stop();
 	}
 
 }

@@ -14,6 +14,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 
 public class Graphics {
 	AssetManager assets;
@@ -22,7 +23,8 @@ public class Graphics {
 	Paint paint;
 	Rect srcRect = new Rect();
 	Rect dstRect = new Rect();
-	
+	 private Typeface mFace; 
+	 
 	public static enum PixmapFormat {
 		ARGB8888, ARGB4444, RGB565
 	}
@@ -32,6 +34,10 @@ public class Graphics {
 		this.framebuffer = framebuffer;
 		this.canvas = new Canvas(framebuffer);
 		this.paint = new Paint();
+		mFace = Typeface.createFromAsset(assets,"kenvector_future.ttf");  
+		paint.setTextSize(30);
+		paint.setTypeface(mFace);
+		paint.setAntiAlias(true);
 	}
 	
 	public Pixmap newPixmap(String fileName, PixmapFormat format) {
@@ -136,7 +142,16 @@ public class Graphics {
 		String nr = Integer.toString(number);
 		
 		for(int i = 0; i < nr.length(); ++i)
-			drawSingleNumber(x+i*21, y, nr.charAt(i));
+			drawSingleNumber(x+i*22, y, nr.charAt(i));
+	}
+	
+	public void drawText(int x, int y, String text, int color) {
+		paint.setColor(color);
+		canvas.drawText(text, x, y, paint);
+	}
+	
+	public int measureText(String text) {
+		return (int) paint.measureText(text);
 	}
 	
 	public void drawNumberYellow(int x, int y, int number) {
@@ -157,7 +172,7 @@ public class Graphics {
 		if(num == '.')
 			mul = 10;
 		
-		drawPixmap(Assets.numbers, x, y, mul*21, 0, 21, Assets.numbers.getHeight());
+		drawPixmap(Assets.numbers, x, y, mul*22, 0, 22, Assets.numbers.getHeight());
 	}
 	
 	public int getWidth() {

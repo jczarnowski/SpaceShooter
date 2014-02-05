@@ -100,7 +100,7 @@ public class EntityHandler {
 		if(displayedPoints != 0)
 			log = (int)Math.log10(displayedPoints);
 		
-		g.drawNumberYellow(g.getWidth() - 21 * log - 31, 10, displayedPoints);	
+		g.drawText(g.getWidth() - 21 * log - 31, 30, Integer.toString(displayedPoints), 0xffa4a4a4);	
 		
 		
 		if(lastLoopTime!=0)

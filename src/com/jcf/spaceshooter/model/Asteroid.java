@@ -8,7 +8,7 @@ public class Asteroid extends Enemy {
 
 	public Asteroid(int x, int y, float vx, float vy, int screenWidth, int screenHeight)
 	{
-		super(x,y,vx,vy,screenWidth,screenHeight, Math.random()>0.5? Assets.asteroid1: Assets.asteroid2);
+		super(x,y,vx,vy,screenWidth,screenHeight, Assets.asteroid[(int) Math.round(Math.random()*5)]);
 		type = Type.ASTEROID;
 		hp = 60;
 		power = 5;

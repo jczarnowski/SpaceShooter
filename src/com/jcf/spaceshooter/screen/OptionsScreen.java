@@ -27,7 +27,8 @@ public class OptionsScreen extends Screen {
 		textX = (g.getWidth()-Assets.options_text.getWidth())/2;
 		textY = (g.getHeight()-Assets.options_text.getHeight())/2;
 		
-		soundBounds = new Rect(textX, textY+69, textX+330, textY+118);
+		
+		soundBounds = new Rect(textX, textY+69, textX+g.measureText("sound: off"), textY+69+30);
 		inputBounds = new Rect(textX, textY+127, textX+420, textY+183);
 		clearBounds = new Rect(textX, textY+198, textX+316, textY+248);
 		backBounds = new Rect(10, g.getHeight()-10-Assets.back.getHeight(), 10+Assets.back.getWidth(), g.getHeight()-10);
@@ -36,11 +37,6 @@ public class OptionsScreen extends Screen {
 	@Override
 	public void update(int deltaTime) {
 		Input input = game.getInput();
-		
-		if(game.getConfig().soundOn)
-			Assets.menumusic.play();
-		else
-			Assets.menumusic.stop();
 		
 		// process touch events
 		ArrayList<TouchEvent> eventList = input.getTouchEvents();
@@ -95,33 +91,35 @@ public class OptionsScreen extends Screen {
 		g.clear(MainMenuScreen.BGCOLOR);
 		
 		BackgroundStars.present(deltaTime, g);
-		g.drawPixmap(Assets.options_text, textX, textY);
+		//g.drawPixmap(Assets.options_text, textX, textY);
 		
-		int mod = 1;
-		if(game.getConfig().soundOn)
-			mod = 0;
-		
-		g.drawPixmap(Assets.options_onoff, textX+120, textY+69, 
-				mod*Assets.options_onoff.getWidth()/2, 0, Assets.options_onoff.getWidth()/2, Assets.options_onoff.getHeight());
-		
-		mod = 1;
-		if(game.getConfig().controlMethod == ShuttleController.CONTROL_TOUCH)
-			mod = 0;
-		
-		g.drawPixmap(Assets.options_input, textX+249, textY+139,
-				mod*6*18, 0, (5+mod*8)*18, Assets.options_input.getHeight());
+		g.drawText((g.getWidth()-g.measureText("Options"))/2, textY, "Options", 0xffa4a4a4);
+		g.drawText(soundBounds.left, soundBounds.top, "Sound: " + (game.getConfig().soundOn ? "on" : "off"), 0xffa4a4a4);
+		g.drawText(inputBounds.left, inputBounds.top, "Input method: " + (game.getConfig().controlMethod == ShuttleController.CONTROL_ACCEL ? "Accel" : "Touch"),  0xffa4a4a4);
+		g.drawText(clearBounds.left, clearBounds.top, "Clear highscores", 0xffa4a4a4);
+//		int mod = 1;
+//		if(game.getConfig().soundOn)
+//			mod = 0;
+//		
+//		g.drawPixmap(Assets.options_onoff, textX+120, textY+69, 
+//				mod*Assets.options_onoff.getWidth()/2, 0, Assets.options_onoff.getWidth()/2, Assets.options_onoff.getHeight());
+//		
+//		mod = 1;
+//		if(game.getConfig().controlMethod == ShuttleController.CONTROL_TOUCH)
+//			mod = 0;
+//		
+//		g.drawPixmap(Assets.options_input, textX+249, textY+139,
+//				mod*6*18, 0, (5+mod*8)*18, Assets.options_input.getHeight());
 		
 		g.drawPixmap(Assets.back, backBounds.left, backBounds.top);
 	}
 
 	@Override
 	public void pause() {
-		Assets.menumusic.stop();
 	}
 
 	@Override
 	public void resume() {
-		Assets.menumusic.play();
 	}
 
 	@Override

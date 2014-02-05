@@ -28,7 +28,7 @@ public class Background {
 	
 	public void addStars(int num)
 	{
-		addElements(num, starVelocity, Assets.star, 0);
+		addElements(num, starVelocity, Math.random() > 0.5 ? Assets.star[0] : Assets.star[1], 0);
 	}
 	
 	public void addPlanets(int num)
