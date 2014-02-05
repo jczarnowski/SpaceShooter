@@ -35,8 +35,8 @@ public class SpaceObject {
 		this.y = y;
 		this.vx = vx;
 		this.vy = vy;
-		realWidth = imageWidth = pixmap.getWidth();
-		realHeight = imageHeight = pixmap.getHeight();
+		realWidth = 0.8f*(imageWidth = pixmap.getWidth());
+		realHeight = 0.8f*(imageHeight = pixmap.getHeight());
 	}
 
 	public void setX(float x) {

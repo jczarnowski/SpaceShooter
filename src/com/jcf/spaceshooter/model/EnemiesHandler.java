@@ -3,8 +3,6 @@ package com.jcf.spaceshooter.model;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.jcf.spaceshooter.engine.Graphics;
-
 public class EnemiesHandler extends SpaceObjectsHandler {
 
 	private int aggrUfos;
@@ -14,7 +12,7 @@ public class EnemiesHandler extends SpaceObjectsHandler {
 	private int reqUfos;
 	private int reqAsteroids;
 	
-	public EnemiesHandler(int screenWidth, int screenHeight, SpaceShuttle s, int rufos, int rasteroids, int raufos)
+	public EnemiesHandler(int screenWidth, int screenHeight, SpaceShuttle s, int rasteroids, int rufos, int raufos)
 	{
 		super(screenWidth, screenHeight,s);
 		reqAggrUfos = raufos;
@@ -33,6 +31,8 @@ public class EnemiesHandler extends SpaceObjectsHandler {
 		for (int i = spaceObjects.size() -1; i >= 0; i--) {
 
 			InteractiveSpaceObject obj = spaceObjects.get(i);
+			points += obj.getPoints();
+			
 			if (!spaceObjects.get(i).update(time)) 
 			{
 				tmpBonus = obj.getBonus();
@@ -48,13 +48,14 @@ public class EnemiesHandler extends SpaceObjectsHandler {
 				case ASTEROID:
 					asteroids--;
 					break;
+				case ENEMY_BULLET:
+					break;
 				}
 				if(tmpBonus != null)
 					spaceObjects.add(tmpBonus);
 
 				spaceObjects.remove(i);
 			}
-			points += ((InteractiveSpaceObject)obj).getPoints();
 		}
 		
 		createUfos(reqUfos - ufos);
@@ -100,14 +101,20 @@ public class EnemiesHandler extends SpaceObjectsHandler {
 		Random  random = new Random();
 		for(int j = 0; j< n;j++)
 		{
-			float a = random.nextFloat()*0.20f + 0.20f;
-			float b = random.nextFloat()*0.10f -0.05f;
+			float a = random.nextFloat()*0.10f + 0.05f;
+			float b = 0;
 			int x = (int) (random.nextFloat()*sw);
 			int y = (int) (random.nextFloat()*sh - sh);
 			{
-				spaceObjects.add(new AggressiveUfo(x,y,b,a,sw,sh,ss));
+				spaceObjects.add(new AggressiveUfo(x,y,a,2*a,sw,sh,ss,spaceObjects));
 			}
 		}
 			aggrUfos+=n;
+	}
+
+	public void setEntitiesNumbers(int rasteroids, int rufos, int raufos) {
+		reqAggrUfos = raufos;
+		reqAsteroids = rasteroids;
+		reqUfos = rufos;
 	}
 }

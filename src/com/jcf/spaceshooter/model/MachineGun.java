@@ -25,7 +25,7 @@ public class MachineGun extends Gun {
 		{
 			float asd = (float) (rot / 1.30 * Math.PI + 0.01*(Math.random() - 0.5)) - angle/2f + da*i ;
 			float v = 0.30f;
-			bullets.add(new MachineGunBullet(x, y, (float)Math.sin(asd)*v, -(float)Math.cos(asd)*v, width, height));
+			bullets.add(new MachineGunBullet(x, y, asd, (float)Math.sin(asd)*v, -(float)Math.cos(asd)*v, width, height));
 		}
 		return true;
 	}
@@ -35,31 +35,31 @@ public class MachineGun extends Gun {
 		switch(level)
 		{
 		case 0:
-			interval = 200;
+			interval = 400;
 			amount = 1;
 			break;
 		case 1:
-			interval = 150;
+			interval = 300;
 			amount = 2;
 			break;
 		case 2:
-			interval = 150;
+			interval = 300;
 			amount = 3;
 			break;
 		case 3:
-			interval = 150;
+			interval = 300;
 			amount = 4;
 			break;
 		case 5:
-			interval = 150;
+			interval = 300;
 			amount = 5;
 			break;
 		case 6:
-			interval = 150;
+			interval = 300;
 			amount = 6;
 			break;
 		case 7:
-			interval = 100;
+			interval = 200;
 			amount = 7;
 			break;
 		}

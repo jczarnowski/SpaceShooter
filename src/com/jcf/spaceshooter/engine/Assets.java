@@ -21,6 +21,7 @@ public class Assets {
 	public static Pixmap[] star;
 	public static Pixmap planet;
 	public static Pixmap bullet;
+	public static Pixmap enemyBullet;
 	public static Pixmap bullet_rocket;
 	public static Pixmap pad;
 	public static Pixmap spark;
@@ -28,6 +29,7 @@ public class Assets {
 	public static Pixmap sparkBigRed;
 	public static Pixmap sparkBigBlue;
 	public static Pixmap ufo;
+	public static Pixmap ufo2;
 	public static Pixmap bonusUpgrade;
 	public static Pixmap bonusBazooka;
 	public static Pixmap bonusMachinegun;

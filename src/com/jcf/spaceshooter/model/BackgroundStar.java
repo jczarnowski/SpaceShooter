@@ -10,9 +10,9 @@ public class BackgroundStar extends SpaceObject {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public boolean update(int time)
+	public boolean update(int time, float vel)
 	{
+		vy = vel;
 		super.update(time);
 		return y<=sheight + imageHeight/2;
 	}

@@ -105,7 +105,7 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 	@Override
 	public void colisionDetected(InteractiveSpaceObject object) {
 		super.colisionDetected(object);
-		if(object instanceof Enemy)
+		if(object instanceof Enemy || object instanceof EnemyBullet)
 			hp --;
 		
 		if(hp <= 0) {

@@ -27,7 +27,9 @@ public class GameScreen extends Screen {
 	Background bg;
 	EntityHandler eh;
 	Music activemusic;
-	
+	int nextLevelTime;
+	int level;
+
 	public GameScreen(AndroidGame game) {
 		super(game);
 		g = game.getGraphics();
@@ -42,11 +44,45 @@ public class GameScreen extends Screen {
 			shuttleController = new AccelController(game.getInput());
 			break;
 		}
-		
+
 		// random music
 		activemusic = Assets.music[(int) (Math.random()*3)];
 		activemusic.setLooping(true);
 		activemusic.setVolume(0.3f);
+		
+		level = 0;
+		nextLevelTime = setLevel(level);
+	}
+
+	private int setLevel(int level) {
+		int ntlvl = 10000;
+		
+		eh.lvlUp(level);
+		switch(level)
+		{
+		case 0:
+			bg.setSpeed(0.2f);
+			bg.setColor(MainMenuScreen.BGCOLOR);
+		break;
+		case 1:
+			bg.setSpeed(0.6f);
+			bg.setColor(0xff002e63);
+			break;
+		case 2:
+			bg.setSpeed(0.65f);
+			bg.setColor(0xff528036);
+			break;
+		case 3:
+			bg.setSpeed(0.7f);
+			bg.setColor(0xfffe2712);
+			break;
+		case 4:
+			bg.setSpeed(1f);
+			bg.setColor(MainMenuScreen.BGCOLOR);
+			break;
+		}
+		
+		return ntlvl;
 	}
 
 	@Override
@@ -60,11 +96,11 @@ public class GameScreen extends Screen {
 			activemusic.play();
 		else
 			activemusic.stop();
-		
+
 		if(state == PLAYING) {
 			//controll
-			shuttleController.ControlShuttle(eh.getShuttle());
-	
+			shuttleController.ControlShuttle(eh.getShuttle()) ;
+
 			//model update
 			//background
 			bg.update(deltaTime);
@@ -94,24 +130,35 @@ public class GameScreen extends Screen {
 		if(!eh.getShuttle().isAlive()) {
 			state = GAMEOVER;
 		}
+		
+		//level managment
+		if(state == PLAYING)
+			nextLevelTime-=deltaTime;
+		
+		if(nextLevelTime<0)
+		{
+			nextLevelTime = setLevel(++level);
+		}
 	}
 
 	@Override
 	public void present(int deltaTime) {
-
-		g.clear(MainMenuScreen.BGCOLOR);
-		Graphics g = game.getGraphics();
+		
+//		bg clears screen
+//		g.clear(MainMenuScreen.BGCOLOR);
 
 		bg.draw(g);
 		eh.draw(g);
-		
+
 		if(state == GAMEOVER) {
 			int x = (g.getWidth() - Assets.gameover.getWidth())/2;
 			int y = (g.getHeight() - Assets.gameover.getHeight())/2;	
-			
+
 			g.drawPixmap(Assets.gameover, x, y);
 			g.drawText(x + 145, y + 95, Integer.toString(eh.getPoints()), 0xffa4a4a4);
 		}
+		
+		g.drawText(g.getWidth()/2 - 200, 25, "level: " + level+ ",  next:" + Float.toString((float)((int)(nextLevelTime/100)/10f))+"s", Color.WHITE);
 
 	}
 
