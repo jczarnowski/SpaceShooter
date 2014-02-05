@@ -1,5 +1,7 @@
 package com.jcf.spaceshooter.model;
 
+import java.util.ArrayList;
+
 import com.jcf.spaceshooter.engine.Assets;
 
 public class Gun {
@@ -13,9 +15,9 @@ public class Gun {
 	protected int interval;
 	protected int level;
 	protected int maxLevel;
-	Bullets bullets;
+	ArrayList<InteractiveSpaceObject> bullets;
 	
-	public Gun(int w, int h,Bullets bullets)
+	public Gun(int w, int h, ArrayList<InteractiveSpaceObject> bullets)
 	{
 		width = w;
 		height = h;

@@ -2,6 +2,7 @@ package com.jcf.spaceshooter.screen;
 
 import java.util.ArrayList;
 
+import android.R.color;
 import android.graphics.Rect;
 
 import com.jcf.spaceshooter.AndroidGame;

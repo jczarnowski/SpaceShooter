@@ -1,9 +1,11 @@
 package com.jcf.spaceshooter.model;
 
+import java.util.ArrayList;
+
 public class CrazyGun extends Gun {
 
 	private int amount;
-	public CrazyGun(Bullets bullets, int swidth, int sheight) {
+	public CrazyGun(ArrayList<InteractiveSpaceObject> bullets, int swidth, int sheight) {
 		super(swidth,sheight,bullets);
 		interval = 100;
 		maxLevel = 6;

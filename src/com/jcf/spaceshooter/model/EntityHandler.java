@@ -10,10 +10,11 @@ import com.jcf.spaceshooter.engine.Graphics;
 
 public class EntityHandler { 
 
-	private Asteroids asteroids;
-	private Bullets bullets;
-	private Enemies enemies;
-	SpaceShuttle ss;
+//	private Asteroids asteroids;
+//	private Bullets bullets;
+	private EnemiesHandler enemies;
+	private PlayerObjectsHandler player;
+	
 	ScreenGrid sg;
 	int points;
 	int displayedPoints;
@@ -22,34 +23,24 @@ public class EntityHandler {
 
 	public EntityHandler(int screenWidth, int screenHeight)
 	{
-		bullets = new Bullets(screenWidth, screenHeight,ss);
-		ss = new SpaceShuttle( screenWidth, screenHeight, bullets);
-		asteroids = new Asteroids(screenWidth, screenHeight, ss);
-		enemies = new Enemies(screenWidth, screenHeight, ss);
+		player = new PlayerObjectsHandler(screenWidth, screenHeight);
+		enemies = new EnemiesHandler(screenWidth, screenHeight, player.getShuttle(),10,10,0);
 		sg = new ScreenGrid(screenWidth, screenHeight, 5, 5);
 		displayedPoints = points = 0; 
-		
 	}
 
 	public void update(int time)
 	{
-		ss.update(time);
-		asteroids.update(time);
 		enemies.update(time);
-		bullets.update(time);
-		
-		Log.d("b",Integer.toString(bullets.size()));
+		player.update(time);
 		
 		sg.clear();
-		
-		bullets.register(sg);
-		asteroids.register(sg);
 		enemies.register(sg);
-		sg.registerSpaceObject(ss);
+		player.register(sg);
 	
 		handleCollisions();
 		
-		points += enemies.getPoints() + asteroids.getPoints();
+		points += enemies.getPoints() ;//+ asteroids.getPoints();
 		
 		lastLoopTime = time;
 	}
@@ -86,10 +77,8 @@ public class EntityHandler {
 
 	public void draw(Graphics g)
 	{
-		bullets.draw(g);
-		ss.draw(g);
 		enemies.draw(g);
-		asteroids.draw(g);
+		player.draw(g);
 		
 		int log = 0;
 		if(points > displayedPoints) displayedPoints = (int)(displayedPoints*0.9 + points*0.1);
@@ -113,7 +102,7 @@ public class EntityHandler {
 	}
 
 	public SpaceShuttle getShuttle() {
-		return ss;
+		return player.getShuttle();
 	}
 	
 	public int getPoints() {
