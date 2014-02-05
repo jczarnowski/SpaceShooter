@@ -36,7 +36,6 @@ public class Bullets extends SpaceObjectsHandler{
 		spaceObjects.add(b);
 	}
 
-	@Override
 	public void createSpaceObjects(int n) {
 		//nop
 	}

@@ -7,7 +7,6 @@ public class Bonuses extends SpaceObjectsHandler {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void createSpaceObjects(int n) {
 		// TODO Auto-generated method stub
 

@@ -110,7 +110,7 @@ public class GameScreen extends Screen {
 			int y = (g.getHeight() - Assets.gameover.getHeight())/2;	
 			
 			g.drawPixmap(Assets.gameover, x, y);
-			g.drawNumber(x + 145, y + 106, eh.getPoints());
+			g.drawText(x + 145, y + 95, Integer.toString(eh.getPoints()), 0xffa4a4a4);
 		}
 
 	}
