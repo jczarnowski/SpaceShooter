@@ -91,7 +91,8 @@ public class MainMenuScreen extends Screen {
 		// update positions of the stars
 		int gain = 5;
 		BackgroundStars.update(deltaTime);
-		BackgroundStars.bank((input.getAccY()-startY)*gain);
+		BackgroundStars.transform(input.getAccX(),input.getAccY(),input.getAccZ());
+		//BackgroundStars.bank((input.getAccY()-startY)*gain);
 	}
 
 	@Override

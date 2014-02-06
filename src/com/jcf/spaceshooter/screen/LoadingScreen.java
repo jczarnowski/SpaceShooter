@@ -61,7 +61,9 @@ public class LoadingScreen extends Screen {
 		Assets.life = g.newPixmap("life.png", PixmapFormat.ARGB4444); 
 		Assets.lifeUp = g.newPixmap("lifeUp.png", PixmapFormat.ARGB4444); 
 		Assets.enemyBullet = g.newPixmap("enemyBullet.png", PixmapFormat.ARGB4444); 
-		
+		Assets.shield = new Pixmap[3];
+		for(int i = 1; i <=3; ++i) Assets.shield[i-1] = g.newPixmap("shield" + i + ".png", PixmapFormat.ARGB4444);
+		Assets.shieldUp = g.newPixmap("shieldup.png", PixmapFormat.ARGB4444);
 		
 		// load sounds
 		Audio a = game.getAudio();
@@ -73,6 +75,8 @@ public class LoadingScreen extends Screen {
 		Assets.ufo_expl = a.newSound("explo2.wav");
 		Assets.pew = a.newSound("pew.wav");
 		Assets.death = a.newSound("death.wav");
+		Assets.shieldup = a.newSound("shield_up.ogg");
+		Assets.shielddown = a.newSound("shield_down.ogg");
 		
 		// load music
 		Assets.music = new Music[4];

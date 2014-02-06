@@ -11,7 +11,8 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 
 	private Gun activeGun, machineGun, bazooka, crazyGun;
 	private float acc = 0.01f;
-
+	private int shield = 3;
+	
 	private float desiredVx = 0;
 
 	private Pixmap pixmapHp;
@@ -60,6 +61,10 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 			hp++;
 			Assets.pickup.play(0.6f);
 			break;
+		case BonusDrop.SHIELD:
+			shield++;
+			Assets.shieldup.play(1f);
+			break;
 		}
 
 
@@ -105,8 +110,15 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 	@Override
 	public void colisionDetected(InteractiveSpaceObject object) {
 		super.colisionDetected(object);
-		if(object instanceof Enemy || object instanceof EnemyBullet)
-			hp --;
+		if(object instanceof Enemy || object instanceof EnemyBullet) {
+			if(shield > 0) {
+				shield--;
+				Assets.shielddown.play(1f);
+			}
+			else
+				hp --;
+		
+		}
 		
 		if(hp <= 0) {
 			Assets.death.play(0.4f);
@@ -121,6 +133,10 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 		if(hp > 0)
 			for(int i = 0; i< hp; i++)
 				g.drawPixmap(pixmapHp, 20*i+5, 5);
+		
+		if(shield > 0)
+			g.drawPixmap(Assets.shield[shield-1], (int)x- Assets.shield[shield-1].getWidth()/2,
+					(int)y - Assets.shield[shield-1].getHeight()/2);
 	}
 
 }

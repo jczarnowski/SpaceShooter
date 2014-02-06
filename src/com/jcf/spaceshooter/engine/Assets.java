@@ -37,6 +37,8 @@ public class Assets {
 	public static Pixmap fnf;
 	public static Pixmap life;
 	public static Pixmap lifeUp;
+	public static Pixmap[] shield;
+	public static Pixmap shieldUp;
 	
 	public static Sound click;
 	public static Sound asteroid_expl;
@@ -46,7 +48,10 @@ public class Assets {
 	public static Sound hit;
 	public static Sound pew;
 	public static Sound death;
+	public static Sound shieldup;
+	public static Sound shielddown;
 	
 	public static Music[] music;
+	
 	
 }
