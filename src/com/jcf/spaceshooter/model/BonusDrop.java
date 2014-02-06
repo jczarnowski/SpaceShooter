@@ -62,6 +62,9 @@ public class BonusDrop extends InteractiveSpaceObject{
 		hp = 1;
 		realWidth = (int)(0.5 * imageWidth);
 		realHeight = (int)(0.5*imageHeight);
+		 
+		if(vy<0.1)
+			vy=0.1f;
 	}
 	
 	public boolean colisionDetection(InteractiveSpaceObject object) {
