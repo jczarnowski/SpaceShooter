@@ -52,7 +52,7 @@ public class Enemy extends InteractiveSpaceObject {
 		
 		if(Math.random() < 0.2) 
 		{
-			bonus = new BonusDrop((int)x, (int)y, 0f, vy, swidth, sheight);
+			bonus = new BonusDrop((int)x, (int)y, 0f, Math.max(vy, 0.1f), swidth, sheight);
 		}
 	}
 

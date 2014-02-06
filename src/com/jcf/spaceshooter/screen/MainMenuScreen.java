@@ -45,7 +45,7 @@ public class MainMenuScreen extends Screen {
 		int soundY = g.getHeight() - 10 - Assets.sound.getHeight();
 		soundBounds = new Rect(soundX, soundY, soundX+Assets.sound.getWidth(), soundY+Assets.sound.getHeight());
 		
-		BackgroundStars.init(g);
+		BackgroundStars.init(g, game.getInput());
 		
 		startY = game.getInput().getAccY();
 	}
@@ -91,7 +91,7 @@ public class MainMenuScreen extends Screen {
 		// update positions of the stars
 		int gain = 5;
 		BackgroundStars.update(deltaTime);
-		BackgroundStars.bank((input.getAccY()-startY)*gain);
+		//BackgroundStars.bank((input.getAccY()-startY)*gain);
 	}
 
 	@Override

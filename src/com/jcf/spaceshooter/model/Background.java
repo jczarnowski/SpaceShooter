@@ -16,7 +16,7 @@ public class Background {
 	float starVelocity = 0.1f;
 	float reqStarVelocity = 0.1f;
 	float planetVelocity = 0f; 
-	float colorR = 0, colorG = 0, colorB = 0, rr = 0, rg = 0, rb = 0;
+	char R = 0, G = 0, B = 0 , A = 0xFF, rr = 0, rg = 0, rb = 0;
 	int color;
 	protected int swidth, sheight;
 	
@@ -28,8 +28,12 @@ public class Background {
 		stars = new ArrayList<BackgroundStar>();
 		addStars(50);
 		//addPlanets(1);
-		color = MainMenuScreen.BGCOLOR;
 		
+		color = (char) MainMenuScreen.BGCOLOR;
+		rr = R = (char) ((color>>16)&0xFF);
+		rg = G = (char) ((color>>8)&0xFF);
+		rb = B = (char) (color&0xFF);
+		A = 0xFF;
 	}
 	
 	public void addStars(int num)
@@ -52,7 +56,11 @@ public class Background {
 	public void update(int time)
 	{
 		float a1 = 0.95f, a2 = 0.05f;
-		//color = (int)(a1*color + a2*reqColor);
+		R = (char)(a1*R + a2*rr);
+		G = (char)(a1*G + a2*rg);
+		B = (char)(a1*B + a2*rb);
+		A = (char)(a1*R + a2*0xFF);
+		//color =  (int) (A<<24 + R<<16 + G<<8 + B) ;
 		starVelocity = a1*(float)starVelocity + a2*(float)reqStarVelocity;
 		for(BackgroundStar a: stars)
 		{
@@ -78,6 +86,10 @@ public class Background {
 	}
 
 	public void setColor(int c) {
+//		rr = (char)((c>>16)&0xFF);
+//		rg =  (char)((c>>8)&0xFF);
+//		rb = (char)(c&0xFF);
+//		A = 0;
 		color = c;
 	}
 	
