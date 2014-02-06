@@ -46,14 +46,17 @@ public class TouchController extends ShuttleController {
 					left = true;
 			}
 		}
-			
+		
+		if(left)
+			shuttle.setVx(-0.6f);
+		
+		if(right)
+			shuttle.setVx(0.6f);
+		
 		if(left == right)
 			shuttle.setVx(0);
-		else
-			if(left)
-				shuttle.setVx(-0.6f);
-			else
-				shuttle.setVx(0.6f);
+		
+	
 		
 	}
 	

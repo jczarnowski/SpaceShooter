@@ -62,6 +62,8 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 			Assets.pickup.play(0.6f);
 			break;
 		case BonusDrop.SHIELD:
+			if(shield == 3) break;
+			
 			shield++;
 			Assets.shieldup.play(1f);
 			break;
