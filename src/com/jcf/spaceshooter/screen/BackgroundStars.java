@@ -3,8 +3,7 @@ package com.jcf.spaceshooter.screen;
 import java.util.ArrayList;
 import java.util.Random;
 
-import android.graphics.Point;
-
+import com.jcf.spaceshooter.engine.Input;
 import com.jcf.spaceshooter.engine.Graphics;
 import com.jcf.spaceshooter.model.Point3d;
 
@@ -15,20 +14,23 @@ public class BackgroundStars {
 
 	private static boolean initialized = false;
 	private static int width, height;
-	private static int starwidth = 5;
+	private static int starwidth = 4;
 	private static int starheight = 500;
-	private static int eyeheight = 300;
+	private static int eyeheight = 500;
 
 	private static double alfa = 0;
 	private static double beta = 0;
+	private static Input input;
 
-	public static void init(Graphics g) {
+	public static void init(Graphics g, Input inpuT) {
 		if(initialized)
 			return;
 
 		width = g.getWidth();
 		height = g.getHeight();
 
+		input = inpuT;
+		
 		// generate stars
 		Random gen = new Random();
 		starList.clear();
@@ -52,6 +54,8 @@ public class BackgroundStars {
 				p.randOnZ(width, width);
 			}
 		}
+		
+		transform(input.getAccX(),input.getAccY(),input.getAccZ());
 	}
 
 	public static void present(int deltaTime, Graphics g) {
@@ -62,7 +66,8 @@ public class BackgroundStars {
 			
 			if(transformedStarList.get(i).z < eyeheight)
 			{
-				double w = (starwidth/(- transformedStarList.get(i).z + eyeheight) * eyeheight);//(int)( starwidth*transformedStarList.get(i).z);
+				double w = (starwidth/(- transformedStarList.get(i).z/2 + eyeheight) * eyeheight);//(int)( starwidth*transformedStarList.get(i).z);
+				if(w<1) w = 1;
 				double y = (transformedStarList.get(i).y/(-transformedStarList.get(i).z + eyeheight) * eyeheight);
 				double x = (transformedStarList.get(i).x/(-transformedStarList.get(i).z + eyeheight) * eyeheight);
 				g.drawRect((int)(x + w/2 + width/2),(int)( y  -w/2 + height/2), (int)w, (int)w, 0xFFFFFFFF);
