@@ -45,8 +45,8 @@ public class LoadingScreen extends Screen {
 		Assets.pad = g.newPixmap("pad.png", PixmapFormat.ARGB4444);
 		Assets.planet = g.newPixmap("planet.png", PixmapFormat.ARGB4444);
 		Assets.rocket = g.newPixmap("rocket.png", PixmapFormat.ARGB4444);
-		Assets.star = new Pixmap[2];
-		for(int i = 1; i <= 2; ++i) Assets.star[i-1] = g.newPixmap("star" + i + ".png", PixmapFormat.ARGB4444);
+		Assets.star = new Pixmap[3];
+		for(int i = 1; i <= 3; ++i) Assets.star[i-1] = g.newPixmap("star" + i + ".png", PixmapFormat.ARGB4444);
 		
 		Assets.spark = g.newPixmap("spark.png", PixmapFormat.ARGB4444);
 		Assets.sparkBig = g.newPixmap("sparkBig.png", PixmapFormat.ARGB4444);

@@ -84,6 +84,11 @@ public class Graphics {
 	public void clear(int color) {
 		canvas.drawRGB((color & 0xff0000) >> 16, (color & 0xff00) >> 8,
 				(color & 0xff));
+	}	
+	
+	public void clearTransparent(int color) {
+		canvas.drawARGB((color & 0xff000000) >> 24,(color & 0xff0000) >> 16, (color & 0xff00) >> 8,
+				(color & 0xff));
 	}
 	
 	public void drawPixel(int x, int y, int color) {
@@ -121,6 +126,12 @@ public class Graphics {
 	
 	public void drawPixmap(Pixmap pixmap, int x, int y) {
 		canvas.drawBitmap(pixmap.bitmap, x, y, null);
+	}	
+	public void drawPixmap(Pixmap pixmap, int x, int y, float scale) {
+		Matrix matrix = new Matrix();
+		matrix.setScale(scale, scale);
+		matrix.postTranslate(x, y);
+		canvas.drawBitmap(pixmap.bitmap, matrix, null);
 	}
 	
 	public void drawRotatedPixmap(Pixmap pixmap, int x, int y, float angle) {

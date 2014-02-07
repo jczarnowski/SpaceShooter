@@ -30,6 +30,7 @@ public class MainMenuScreen extends Screen {
 		super(game);
 		
 		Graphics g = game.getGraphics();
+		g.clear(BGCOLOR);
 		textX = (g.getWidth() - Assets.menuText.getWidth())/2;
 		textY = (g.getHeight() - Assets.menuText.getHeight())/2;
 		buttonHeight = Assets.menuText.getHeight()/4;
@@ -97,8 +98,8 @@ public class MainMenuScreen extends Screen {
 	@Override
 	public void present(int deltaTime) {
 		Graphics g = game.getGraphics();
-		
-		g.clear(BGCOLOR);
+		int color = BGCOLOR - 0xdd000000;
+		g.clearTransparent(color);
 		
 		BackgroundStars.present(deltaTime, g);
 		
