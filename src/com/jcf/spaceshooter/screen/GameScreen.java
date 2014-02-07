@@ -29,10 +29,13 @@ public class GameScreen extends Screen {
 	Music activemusic;
 	int nextLevelTime;
 	int level;
-
+	int color;
+	float R = 0,G = 0,B = 0,rR,rG,rB;
 	public GameScreen(AndroidGame game) {
 		super(game);
+		BackgroundStars.setStarNum(100);
 		g = game.getGraphics();
+		BackgroundStars.init(g, game.getInput());
 		bg = new Background(g.getWidth(), g.getHeight());
 		eh = new EntityHandler(g.getWidth(), g.getHeight());
 		switch(game.getConfig().controlMethod)
@@ -55,32 +58,48 @@ public class GameScreen extends Screen {
 	}
 
 	private int setLevel(int level) {
-		int ntlvl = 10000;
+		int ntlvl = 5000;
 		
 		eh.lvlUp(level);
-		switch(level)
-		{
-		case 0:
-			bg.setSpeed(0.2f);
-			bg.setColor(MainMenuScreen.BGCOLOR);
-		break;
-		case 1:
-			bg.setSpeed(0.6f);
-			bg.setColor(0xff002e63);
-			break;
-		case 2:
-			bg.setSpeed(0.65f);
-			bg.setColor(0xff528036);
-			break;
-		case 3:
-			bg.setSpeed(0.7f);
-			bg.setColor(0xfffe2712);
-			break;
-		case 4:
-			bg.setSpeed(1f);
-			bg.setColor(MainMenuScreen.BGCOLOR);
-			break;
-		}
+//		switch(level)
+//		{
+//		case 0:
+//			color = MainMenuScreen.BGCOLOR;
+////			bg.setSpeed(0.2f);
+////			bg.setColor(MainMenuScreen.BGCOLOR);
+//		break;
+//		case 1:
+//			color = 0xff002e63;
+////			bg.setSpeed(0.6f);
+////			bg.setColor(0xff002e63);
+//			break;
+//		case 2:
+//			color = 0xff528036;
+////			bg.setSpeed(0.65f);
+////			bg.setColor(0xff528036);
+//			break;
+//		case 3:
+//			color = 0xff5e2712;
+////			bg.setSpeed(0.7f);
+////			bg.setColor(0xfffe2712);
+//			break;
+//		case 4:
+//			color = MainMenuScreen.BGCOLOR;
+////			bg.setSpeed(1f);
+////			bg.setColor(MainMenuScreen.BGCOLOR);
+//			break;
+//			
+//		}
+		
+		rR = (float) (Math.random()*50);
+		rB = (float) (Math.random()*130 + 0);
+		rG = 50 - rR;
+		
+		float speed = (float)(0.2 + Math.random()*2);
+		BackgroundStars.setViewAngle((float)(-(1 + Math.random())*Math.PI/4));
+		BackgroundStars.setStarSpeed(speed);
+		BackgroundStars.setStarSize((int)(3+speed));
+		BackgroundStars.setStarNum(100+(int)(Math.random()*300));
 		
 		return ntlvl;
 	}
@@ -88,8 +107,8 @@ public class GameScreen extends Screen {
 	@Override
 	public void update(int deltaTime) {
 
-		Log.d("asd", Float.toString(1000.f/deltaTime));
-
+		
+		
 		Input input = game.getInput();
 
 		if(game.getConfig().soundOn)
@@ -103,7 +122,9 @@ public class GameScreen extends Screen {
 
 			//model update
 			//background
-			bg.update(deltaTime);
+			handleColor();
+			BackgroundStars.update(deltaTime);
+//			bg.update(deltaTime);
 			//entity handler
 			eh.update(deltaTime);
 		} else {
@@ -145,9 +166,10 @@ public class GameScreen extends Screen {
 	public void present(int deltaTime) {
 		
 //		bg clears screen
-//		g.clear(MainMenuScreen.BGCOLOR);
+		g.clear(color);
 
-		bg.draw(g);
+//		bg.draw(g);
+		BackgroundStars.present(deltaTime, g);
 		eh.draw(g);
 
 		if(state == GAMEOVER) {
@@ -179,6 +201,16 @@ public class GameScreen extends Screen {
 	public void dispose() {
 		if(game.isFinishing())
 			activemusic.stop();
+	}
+	
+	private void handleColor()
+	{
+		float a = 0.95f;
+		float b = 0.05f;
+		R = a*R + b*rR;
+		G = a*G + b*rG;
+		B = a*B + b*rB;
+		color = 0xff000000 | (int)R<<16 | (int)G<<8 | (int)B;
 	}
 
 }

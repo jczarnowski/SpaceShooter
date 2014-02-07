@@ -69,7 +69,7 @@ public class MainMenuScreen extends Screen {
 				if(inBounds(x, y, playBounds)) {
 					if(game.getConfig().soundOn) if(game.getConfig().soundOn) Assets.click.play(0.1f);
 					game.setScreen(new GameScreen(game));
-					BackgroundStars.deinitialize();
+					//BackgroundStars.deinitialize();
 				}
 				if(inBounds(x, y, scoreBounds)) {
 					if(game.getConfig().soundOn) Assets.click.play(0.1f);
