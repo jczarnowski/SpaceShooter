@@ -62,10 +62,11 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 			Assets.pickup.play(0.6f);
 			break;
 		case BonusDrop.SHIELD:
-			if(shield == 3) break;
-			
-			shield++;
-			Assets.shieldup.play(1f);
+			if(shield<3)
+			{
+				shield++;
+				Assets.shieldup.play(1f);
+			}
 			break;
 		}
 
@@ -133,9 +134,11 @@ public class SpaceShuttle extends InteractiveSpaceObject{
 		super.draw(g);
 		
 		if(hp > 0)
-			for(int i = 0; i< hp; i++)
-				g.drawPixmap(pixmapHp, 20*i+5, 5);
-		
+		{
+			//for(int i = 0; i< hp; i++)
+			g.drawPixmap(pixmapHp,15, 5);
+			g.drawText(pixmapHp.getWidth()+20, 5 + pixmapHp.getHeight(), "*" + hp, 0xffffffff);
+		}
 		if(shield > 0)
 			g.drawPixmap(Assets.shield[shield-1], (int)x- Assets.shield[shield-1].getWidth()/2,
 					(int)y - Assets.shield[shield-1].getHeight()/2);

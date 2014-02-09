@@ -21,7 +21,7 @@ public class Point3d {
 	{
 		x = (float) (Math.random()*width - width/2);
 		y = (float) (Math.random()*height - height/2);
-		z = (float) (Math.random()*height - depth);
+		z = (float) (Math.random()*depth*2 - depth);
 	}
 	
 	public void randOnZ(float width, float height)

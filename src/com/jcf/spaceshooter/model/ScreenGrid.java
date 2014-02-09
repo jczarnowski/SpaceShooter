@@ -43,7 +43,6 @@ public class ScreenGrid {
 		{
 			for(int j = 0; j < horSharNum; j++)
 			{				
-				Log.d("grid","n: "+grid.get(i).get(j).size() + " com: " + i +","+j);
 				grid.get(i).get(j).clear();
 			}
 		}
